@@ -6,7 +6,9 @@ import flixel.tile.FlxTilemap;
 import flixel.FlxObject;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
-
+import flixel.tweens.FlxTween;
+import flixel.math.FlxPoint;
+import flixel.FlxSprite;
 
 class PlayState extends FlxState
 {
@@ -87,6 +89,10 @@ class PlayState extends FlxState
 			platforms.setTileProperties(0, FlxObject.ANY);
 			platforms.setTileProperties(1, FlxObject.NONE);
 			add(platforms);
+
+			var transitionIn = new FlxSprite(320,120,AssetPaths.transition_in__png);
+			FlxTween.tween(transitionIn, {x: transitionIn.x - 320 }, .33);
+			add(transitionIn);
 		}
 	}
 }
