@@ -28,13 +28,11 @@ class PlayState extends FlxState
 		hud = new HUD();
 
 		add(level.platforms);
-		add(player);
 		add(level.breakables);
+		add(player);
 		add(hud);
-		player.x = level.spawn.x;
-		player.y = level.spawn.y;
+		sendPlayerToSpawn(player, level);
 		player.enableDrill(this);
-
 
 		setupCamera(player);
 
@@ -49,6 +47,7 @@ class PlayState extends FlxState
 		FlxG.overlap(player.drill, level.breakables, drillSmashed);
 		FlxG.collide(player, level.breakables);
 		FlxG.collide(level.platforms, level.breakables); //for moving block around
+		FlxG.collide(level.breakables, level.breakables);
 
 		super.update(elapsed);
 
@@ -79,6 +78,7 @@ class PlayState extends FlxState
 			P.x = level.spawn.x;
 			P.y = level.spawn.y;
 			hud.updateHUD(">Teleported!");
+			sendPlayerToSpawn(P, level);
 		}
 	}
 
@@ -91,8 +91,29 @@ class PlayState extends FlxState
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
 		player.fadeCam();
+		sendPlayerToSpawn(player, level);
+
+		resetLevel();
+		hud.updateHUD(">You Died!");
+	}
+
+	private function resetLevel():Void
+	{
+		remove(level.platforms);
+		remove(level.breakables);
+		remove(level.hazards);
+		level.reset();
+		level.setMap(currentMap);
+		add(level.platforms);
+		add(level.breakables);
+		add(level.hazards);
+		add(level.breakables);
+		add(level.hazards);
+	}
+
+	private function sendPlayerToSpawn(player:Player, level:Level)
+	{
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
-		trace("ur mum");
 	}
 }
