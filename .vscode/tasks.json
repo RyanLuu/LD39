@@ -13,7 +13,8 @@
 			"taskName": "flash debug",
 			"suppressTaskName": true,
 			"args": ["test", "flash", "-debug", "-Dfdb"],
-			"problemMatcher": "$haxe"
+			"problemMatcher": "$haxe",
+			"isBuildCommand": true
 		},
 		{
 			"taskName": "flash debug (build only)",
@@ -31,7 +32,7 @@
 			"taskName": "html5 debug",
 			"suppressTaskName": true,
 			"args": ["test", "html5", "-debug"],
-			"isBuildCommand": true,
+			//"isBuildCommand": true,
 			"problemMatcher": "$haxe"
 		},
 		{
