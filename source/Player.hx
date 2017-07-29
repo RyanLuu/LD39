@@ -105,4 +105,11 @@ class Player extends FlxSprite
         state.add(drill);
     }
 
+    public function fadeCam()
+    {
+        camera = new FlxCamera(0,0,FlxG.width,FlxG.height,2);
+        camera.follow(this, TOPDOWN, 1);
+        FlxG.cameras.reset(camera);
+        camera.flash(FlxColor.BLACK, 1);
+    }
 }

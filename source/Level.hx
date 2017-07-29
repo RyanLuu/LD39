@@ -5,6 +5,7 @@ import flixel.tile.FlxTilemap;
 import flixel.FlxObject;
 import flixel.math.FlxPoint;
 import flixel.group.FlxGroup;
+import flixel.FlxCamera;
 
 class Level
 {
@@ -17,6 +18,7 @@ class Level
     public var grpTeleporter:FlxGroup;
     public var hazards:FlxGroup;
     public var breakables:FlxGroup;
+
 
     public function new(map:Int=0)
 	{
@@ -70,4 +72,6 @@ class Level
         }
         breakables.add(new BreakableBlock(215,338)); //DELETE LATER
 	}
+
+
 }
