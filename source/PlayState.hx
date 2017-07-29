@@ -44,9 +44,9 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-		FlxG.collide(player, platforms);
-		FlxG.overlap(player, grpTeleporter, playerTouchedTele);
-		FlxG.overlap(player, hazards, playerHitHazard);
+		FlxG.collide(player, level.platforms);
+		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
+		FlxG.overlap(player, level.hazards, playerHitHazard);
 	}
 
 	private function setupCamera(player:Player):Void
