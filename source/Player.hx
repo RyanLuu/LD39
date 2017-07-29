@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.FlxObject;
 import flixel.FlxG;
 import flixel.util.FlxColor;
+import flixel.FlxCamera;
 
 
 class Player extends FlxSprite
@@ -70,10 +71,10 @@ class Player extends FlxSprite
             }
         }
 
-        //if (FlxG.keys.justPressed.B)
-        //{
-          //  blurCamera(true);
-        //}
+        if (FlxG.keys.justPressed.B)
+        {
+            blurCamera(true);
+        }
 
         super.update(elapsed);
     }
@@ -81,11 +82,17 @@ class Player extends FlxSprite
     //fix later
     public function blurCamera(blurred:Bool):Void
     {
+        
         if(blurred){
-            FlxG.cameras.bgColor = 0x11000000;
+            //FlxG.cameras.bgColor = 0x11000000;
+            camera = new FlxCamera(0,0,FlxG.width,FlxG.height,2);
+            camera.useBgAlphaBlending = true;
+            camera.follow(this, TOPDOWN, 1);
+            camera.bgColor = FlxColor.TRANSPARENT;
+            FlxG.cameras.reset(camera);
         }
         else {
-            FlxG.cameras.bgColor = FlxColor.BLACK;
+            //FlxG.cameras.bgColor = FlxColor.BLACK;
         }
     }
 

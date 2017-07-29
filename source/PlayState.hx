@@ -107,5 +107,6 @@ class PlayState extends FlxState
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
 		//player takes damage
+		trace("ur mum");
 	}
 }
