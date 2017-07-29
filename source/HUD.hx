@@ -1,6 +1,5 @@
 package;
 
- import flixel.FlxBasic;
  import flixel.FlxG;
  import flixel.FlxSprite;
  import flixel.group.FlxGroup.FlxTypedGroup;
@@ -13,7 +12,6 @@ package;
      private var back:FlxSprite;
      private var textMessage:FlxText;
      private var count = 0.0;
-     private var out = "";
      private var text = "";
 
      public function new()
@@ -24,7 +22,7 @@ package;
          textMessage = new FlxText(0, 2, 0, "", 8);
          textMessage.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
          textMessage.alignment = RIGHT;
-         textMessage.x = textMessage.width - 4;
+         textMessage.x = 1;
          add(back);
          add(textMessage);
          forEach(function(spr:FlxSprite)
@@ -36,12 +34,12 @@ package;
      public function updateHUD(message:String = ""):Void
      {
          text = message;
-         textMessage.x = 1;
+         count = 0;
      }
 
      override public function update(elapsed:Float):Void
      {
-        count = count + 0.1;
+        count = count + 0.25;
         textMessage.text = text.substring(0, Std.int(count));
      }
  }
