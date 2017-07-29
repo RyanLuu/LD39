@@ -36,6 +36,7 @@ class Level
         grpTeleporter = new FlxGroup();
         hazards = new FlxGroup();
         breakables = new FlxGroup();
+        loader.loadEntities(placeEntities, "entities");
     }
 
     public function setMap(map)
