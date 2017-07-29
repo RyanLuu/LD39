@@ -53,11 +53,6 @@ class Level
 		var x:Int = Std.parseInt(entityData.get("x"));
 		var y:Int = Std.parseInt(entityData.get("y"));
 
-		if (entityName == "player")
-		{
-            spawn.set(x, y);
-		}
-
         if (entityName == "spawn")
         {
             spawn.set(x, y);
