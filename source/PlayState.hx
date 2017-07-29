@@ -28,13 +28,11 @@ class PlayState extends FlxState
 		hud = new HUD();
 
 		add(level.platforms);
-		add(player);
 		add(level.breakables);
+		add(player);
 		add(hud);
-		player.x = level.spawn.x;
-		player.y = level.spawn.y;
+		sendPlayerToSpawn(player, level);
 		player.enableDrill(this);
-
 
 		setupCamera(player);
 
