@@ -25,9 +25,12 @@ class PlayState extends FlxState
 	{
 		super.create();
 
+		FlxG.mouse.useSystemCursor = true;
+
 		map = new FlxOgmoLoader(AssetPaths.TestingGrounds__oel);
 		grpTeleporter = new FlxGroup();
 		platforms = map.loadTilemap(AssetPaths.tiles__png, 16, 16, "platforms");
+		platforms.follow();
 		platforms.setTileProperties(0, FlxObject.ANY);
 		platforms.setTileProperties(1, FlxObject.NONE);
 
@@ -75,12 +78,14 @@ class PlayState extends FlxState
 	}
 	private function playerTouchedTele(P:Player, T:Teleportation):Void
 	{
-		if (P.alive && P.exists)
+		if (P.alive && P.exists)//wat no maney? sack a cack!
 		{
+			remove(platforms);
 			map = new FlxOgmoLoader(grpMaps[currentMap + 1]);
 			platforms = map.loadTilemap(AssetPaths.tiles__png, 16, 16, "platforms");
 			platforms.setTileProperties(0, FlxObject.ANY);
 			platforms.setTileProperties(1, FlxObject.NONE);
+			add(platforms);
 		}
 	}
 }
