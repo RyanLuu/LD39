@@ -30,14 +30,11 @@ class PlayState extends FlxState
 
 		add(level.platforms);
 		add(player);
-<<<<<<< HEAD
 		add(hud);
-=======
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
 		player.enableDrill(this);
 
->>>>>>> origin/master
 
 		setupCamera(player);
 
@@ -47,16 +44,9 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-<<<<<<< HEAD
 		FlxG.collide(player, platforms);
 		FlxG.overlap(player, grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, hazards, playerHitHazard);
-=======
-		FlxG.collide(player, level.platforms);
-		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
-		FlxG.overlap(player, level.hazards, playerHitHazard);
-
->>>>>>> origin/master
 	}
 
 	private function setupCamera(player:Player):Void
