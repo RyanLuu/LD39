@@ -70,7 +70,8 @@ class PlayState extends FlxState
 
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
-		//player takes damage
+		player.x = level.spawn.x;
+		player.y = level.spawn.y;
 		trace("ur mum");
 	}
 }
