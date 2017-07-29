@@ -6,6 +6,7 @@ import flixel.FlxObject;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
+import flixel.FlxState;
 
 
 class Player extends FlxSprite
@@ -15,6 +16,8 @@ class Player extends FlxSprite
     public static inline var RUN_SPEED = 80;
     public static inline var GRAVITY = 420;
     public static inline var JUMP_SPEED = 200;
+
+    var drill:Drill;
 
 
     public function new(?X:Float=0, ?Y:Float=0)
@@ -94,6 +97,12 @@ class Player extends FlxSprite
         else {
             //FlxG.cameras.bgColor = FlxColor.BLACK;
         }
+    }
+
+    public function enableDrill(?state:FlxState=null):Void
+    {
+        drill = new Drill(x,y,this);
+        state.add(drill);
     }
 
 }

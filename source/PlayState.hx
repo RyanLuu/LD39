@@ -46,6 +46,7 @@ class PlayState extends FlxState
 
 		add(platforms);
 		add(player);
+		player.enableDrill(this);
 
 		setupCamera(player);
 
