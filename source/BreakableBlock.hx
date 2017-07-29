@@ -8,7 +8,7 @@ import flixel.util.FlxColor;
 class BreakableBlock extends FlxSprite
 {
 
-    var hitCount = 3;
+    var hitCount = 175;
 
     public function new(?X:Float, ?Y:Float):Void
     {

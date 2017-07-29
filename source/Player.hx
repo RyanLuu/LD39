@@ -48,6 +48,10 @@ class Player extends FlxSprite
             acceleration.x *= 0.5;
         }
 
+        if(FlxG.keys.pressed.SPACE){
+            drill.color = FlxColor.RED;
+        }
+
         if (jetpack)
         {
             if (FlxG.keys.pressed.UP)

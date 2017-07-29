@@ -101,7 +101,10 @@ class PlayState extends FlxState
 
 	private function drillSmashed(drill:Drill, block:BreakableBlock):Void
 	{
-		block.smash();
+		if(drill.isSmashing)
+		{
+			block.smash();
+		}
 	}
 
 
