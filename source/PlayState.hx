@@ -15,6 +15,7 @@ class PlayState extends FlxState
 
 	private var player:Player;
 	private var hud:HUD;
+	private var fx:FX;
 
 	private var map:FlxOgmoLoader;
 	private var platforms:FlxTilemap;

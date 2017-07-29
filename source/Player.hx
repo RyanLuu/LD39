@@ -4,6 +4,7 @@ package;
 import flixel.FlxSprite;
 import flixel.FlxObject;
 import flixel.FlxG;
+import flixel.util.FlxColor;
 
 
 class Player extends FlxSprite
@@ -29,12 +30,12 @@ class Player extends FlxSprite
         acceleration.x = 0;
         if(FlxG.keys.pressed.LEFT)
         {
-            //facing = LEFT;
+            facing = FlxObject.LEFT;
             acceleration.x -= drag.x;
         }
         else if(FlxG.keys.pressed.RIGHT)
         {
-            //facing = RIGHT;
+            facing = FlxObject.RIGHT;
             acceleration.x += drag.x;
         }
         if (!isTouching(FlxObject.FLOOR))
@@ -67,7 +68,24 @@ class Player extends FlxSprite
                 acceleration.y = GRAVITY;
             }
         }
+
+        if (FlxG.keys.justPressed.B)
+        {
+            blurCamera(true);
+        }
+
         super.update(elapsed);
+    }
+
+    //fix later
+    public function blurCamera(blurred:Bool):Void
+    {
+        if(blurred){
+            FlxG.cameras.bgColor = 0x11000000;
+        }
+        else {
+            FlxG.cameras.bgColor = FlxColor.BLACK;
+        }
     }
 
 }
