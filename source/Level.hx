@@ -29,6 +29,13 @@ class Level
         loader.loadEntities(placeEntities, "entities");
     }
 
+    public function reset():Void
+    {
+        grpTeleporter = new FlxGroup();
+        hazards = new FlxGroup();
+        breakables = new FlxGroup();
+    }
+
     public function setMap(map)
     {
         loader = new FlxOgmoLoader(maps[map]);
