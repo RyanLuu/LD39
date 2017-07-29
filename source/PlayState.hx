@@ -22,6 +22,7 @@ class PlayState extends FlxState
 	private var grpTeleporter:FlxGroup;
 	private var grpMaps = [AssetPaths.TestingGrounds__oel, AssetPaths.TeleTesting__oel];
 	private var currentMap = 0;
+	private var hazards:FlxGroup;
 
 
 	override public function create():Void
@@ -56,10 +57,11 @@ class PlayState extends FlxState
 
 		FlxG.collide(player, platforms);
 		FlxG.overlap(player, grpTeleporter, playerTouchedTele);
+		FlxG.overlap(player, hazards, playerHitHazard);
 
 	}
 
-	public function setupCamera(player:Player):Void
+	private function setupCamera(player:Player):Void
 	{
 		FlxG.camera.follow(player, TOPDOWN, 1);
 	}
@@ -79,6 +81,11 @@ class PlayState extends FlxState
 		{
 			grpTeleporter.add(new Teleportation(x,y));
 		}
+
+		if (entityName == "hazard")
+		{
+			hazards.add(new Hazard(x,y));
+		}
 	}
 	private function playerTouchedTele(P:Player, T:Teleportation):Void
 	{
@@ -95,5 +102,10 @@ class PlayState extends FlxState
 			FlxTween.tween(transitionIn, {x: transitionIn.x - 320 }, .33);
 			add(transitionIn);
 		}
+	}
+
+	private function playerHitHazard(player:Player, hazard:Hazard):Void
+	{
+		//player takes damage
 	}
 }
