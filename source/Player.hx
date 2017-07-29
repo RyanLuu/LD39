@@ -7,6 +7,7 @@ import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
 import flixel.FlxState;
+import flash.filters.BlurFilter;
 
 
 class Player extends FlxSprite
@@ -91,15 +92,11 @@ class Player extends FlxSprite
     {
         
         if(blurred){
-            //FlxG.cameras.bgColor = 0x11000000;
-            camera = new FlxCamera(0,0,FlxG.width,FlxG.height,2);
-            camera.useBgAlphaBlending = true;
-            camera.follow(this, TOPDOWN, 1);
-            camera.bgColor = FlxColor.TRANSPARENT;
-            FlxG.cameras.reset(camera);
+            var filter = new BlurFilter();
+            camera.setFilters([filter]);
         }
         else {
-            //FlxG.cameras.bgColor = FlxColor.BLACK;
+            camera.setFilters([]); 
         }
     }
 
