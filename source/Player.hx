@@ -10,7 +10,7 @@ class Player extends FlxSprite
     {
         super(X, Y);
         makeGraphic(10, 10);
-        acceleration.y = 420;
+        acceleration.y = 10;
     }
 
     override public function update(elapsed:Float):Void
