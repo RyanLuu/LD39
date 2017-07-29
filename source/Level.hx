@@ -70,7 +70,7 @@ class Level
         {
             breakables.add(new BreakableBlock(x,y));
         }
-        breakables.add(new BreakableBlock(215,338)); //DELETE LATER
+        //breakables.add(new BreakableBlock(215,338)); //DELETE LATER
 	}
 
 
