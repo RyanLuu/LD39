@@ -30,13 +30,10 @@ class PlayState extends FlxState
 
 		add(level.platforms);
 		add(player);
-<<<<<<< HEAD
-		player.enableDrill(this);
-=======
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
+		player.enableDrill(this);
 
->>>>>>> origin/master
 
 		setupCamera(player);
 
@@ -73,7 +70,6 @@ class PlayState extends FlxState
 
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
-		
 		//player takes damage
 		trace("ur mum");
 	}
