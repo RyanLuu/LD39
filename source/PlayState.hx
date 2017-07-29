@@ -30,6 +30,7 @@ class PlayState extends FlxState
 
 		add(level.platforms);
 		add(player);
+		add(level.breakables);
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
 		player.enableDrill(this);
@@ -46,6 +47,9 @@ class PlayState extends FlxState
 		FlxG.collide(player, level.platforms);
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, level.hazards, playerHitHazard);
+		FlxG.overlap(player.drill, level.breakables, drillSmashed);
+		FlxG.collide(player, level.breakables);
+		FlxG.collide(level.platforms, level.breakables); //for moving block around
 
 	}
 
@@ -67,6 +71,12 @@ class PlayState extends FlxState
 			add(transitionIn);
 		}
 	}
+
+	private function drillSmashed(drill:Drill, block:BreakableBlock):Void
+	{
+		block.smash();
+	}
+
 
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{

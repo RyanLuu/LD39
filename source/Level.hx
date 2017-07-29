@@ -16,6 +16,7 @@ class Level
     public var spawn:FlxPoint;
     public var grpTeleporter:FlxGroup;
     public var hazards:FlxGroup;
+    public var breakables:FlxGroup;
 
     public function new(map:Int=0)
 	{
@@ -24,6 +25,7 @@ class Level
         spawn = new FlxPoint();
         grpTeleporter = new FlxGroup();
         hazards = new FlxGroup();
+        breakables = new FlxGroup();
         loader.loadEntities(placeEntities, "entities");
     }
 
@@ -54,5 +56,11 @@ class Level
 		{
 			hazards.add(new Hazard(x,y));
 		}
+
+        if (entityName == "breakableBlock")
+        {
+            breakables.add(new BreakableBlock(x,y));
+        }
+        breakables.add(new BreakableBlock(215,338)); //DELETE LATER
 	}
 }

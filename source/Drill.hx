@@ -17,6 +17,7 @@ class Drill extends FlxSprite
         super(X,Y);
         player = p;
         makeGraphic(5,5,FlxColor.BLACK);
+        //immovable = true;
     }
 
     override public function update(elapsed:Float):Void
