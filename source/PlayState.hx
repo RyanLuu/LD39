@@ -42,7 +42,6 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		super.update(elapsed);
 
 		FlxG.collide(player, level.platforms);
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
@@ -50,6 +49,8 @@ class PlayState extends FlxState
 		FlxG.overlap(player.drill, level.breakables, drillSmashed);
 		FlxG.collide(player, level.breakables);
 		FlxG.collide(level.platforms, level.breakables); //for moving block around
+
+		super.update(elapsed);
 
 	}
 
