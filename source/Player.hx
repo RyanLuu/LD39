@@ -8,6 +8,7 @@ import flixel.FlxG;
 
 class Player extends FlxSprite
 {
+    var jetpack = true;
     
     public static inline var RUN_SPEED = 80;
     public static inline var GRAVITY = 420;
@@ -36,9 +37,35 @@ class Player extends FlxSprite
             //facing = RIGHT;
             acceleration.x += drag.x;
         }
-        if(FlxG.keys.justPressed.UP)// && isTouching(FlxObject.FLOOR))
+        if (!isTouching(FlxObject.FLOOR))
         {
-            velocity.y = -JUMP_SPEED;
+            acceleration.x *= 0.1;
+        }
+
+        if (jetpack)
+        {
+            if (FlxG.keys.pressed.UP)
+            {
+                acceleration.y = -JUMP_SPEED;
+            } else {
+                acceleration.y = GRAVITY;
+            }
+        }
+        else
+        {
+            if(FlxG.keys.justPressed.UP && isTouching(FlxObject.FLOOR))
+            {
+                velocity.y = -JUMP_SPEED;
+            }
+        }
+        
+        if (FlxG.keys.justPressed.CONTROL)
+        {
+            jetpack = !jetpack;
+            if (!jetpack)
+            {
+                acceleration.y = GRAVITY;
+            }
         }
         super.update(elapsed);
     }

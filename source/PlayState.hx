@@ -25,6 +25,7 @@ class PlayState extends FlxState
 	{
 		super.create();
 
+		FlxG.fixedTimestep = false;
 		FlxG.mouse.useSystemCursor = true;
 
 		map = new FlxOgmoLoader(AssetPaths.TestingGrounds__oel);
