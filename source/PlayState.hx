@@ -12,10 +12,14 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
+<<<<<<< HEAD
 
 		player = new Player();
 		hud = new HUD();
 
+=======
+		add(new Player(100, 100));
+>>>>>>> origin/master
 	}
 
 	override public function update(elapsed:Float):Void
