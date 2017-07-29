@@ -63,12 +63,18 @@ class PlayState extends FlxState
 		P.fadeCam();
 		if (P.alive && P.exists)
 		{
+
+			P.fadeCam();
 			remove(level.platforms);
+			remove(level.breakables);
+			remove(level.hazards);
+			level.reset();
 			level.setMap(currentMap + 1);
 			add(level.platforms);
 			add(level.breakables);
 			add(level.hazards);
-
+			add(level.breakables);
+			add(level.hazards);
 			hud.updateHUD(">Teleported!");
 		}
 	}
