@@ -76,6 +76,8 @@ class PlayState extends FlxState
 			add(level.hazards);
 			add(level.breakables);
 			add(level.hazards);
+			P.x = level.spawn.x;
+			P.y = level.spawn.y;
 			hud.updateHUD(">Teleported!");
 		}
 	}

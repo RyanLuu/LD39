@@ -36,6 +36,7 @@ class Level
         grpTeleporter = new FlxGroup();
         hazards = new FlxGroup();
         breakables = new FlxGroup();
+        spawn = new FlxPoint();
     }
 
     public function setMap(map)
@@ -44,6 +45,11 @@ class Level
         platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "platforms");
 		platforms.setTileProperties(0, FlxObject.ANY);
 		platforms.setTileProperties(1, FlxObject.NONE);
+        spawn = new FlxPoint();
+        grpTeleporter = new FlxGroup();
+        hazards = new FlxGroup();
+        breakables = new FlxGroup();
+        loader.loadEntities(placeEntities,"entities");
     }
 
     private function placeEntities(entityName:String, entityData:Xml):Void
@@ -55,6 +61,11 @@ class Level
 		{
             spawn.set(x, y);
 		}
+
+        if (entityName == "spawn")
+        {
+            spawn.set(x, y);
+        }
 
 		if (entityName == "teleport")
 		{
@@ -70,6 +81,7 @@ class Level
         {
             breakables.add(new BreakableBlock(x,y));
         }
+        
         //breakables.add(new BreakableBlock(215,338)); //DELETE LATER
 	}
 
