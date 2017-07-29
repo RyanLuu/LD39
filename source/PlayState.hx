@@ -46,6 +46,7 @@ class PlayState extends FlxState
 
 		add(platforms);
 		add(player);
+		add(hud);
 
 		setupCamera(player);
 
@@ -58,7 +59,6 @@ class PlayState extends FlxState
 		FlxG.collide(player, platforms);
 		FlxG.overlap(player, grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, hazards, playerHitHazard);
-
 	}
 
 	private function setupCamera(player:Player):Void
@@ -100,7 +100,8 @@ class PlayState extends FlxState
 
 			var transitionIn = new FlxSprite(320,120,AssetPaths.transition_in__png);
 			FlxTween.tween(transitionIn, {x: transitionIn.x - 320 }, .33);
-			add(transitionIn);
+			//add(transitionIn);
+			hud.updateHUD(">Teleporting!");
 		}
 	}
 
