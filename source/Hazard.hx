@@ -13,5 +13,6 @@ class Hazard extends FlxSprite
         super(X,Y);
         width = 16;
         height = 16;
+        //y = y+(16+height);
     }
 }

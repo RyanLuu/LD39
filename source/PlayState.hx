@@ -49,6 +49,7 @@ class PlayState extends FlxState
 		FlxG.overlap(player.drill, level.breakables, drillSmashed);
 		FlxG.collide(player, level.breakables);
 		FlxG.collide(level.platforms, level.breakables); //for moving block around
+		FlxG.collide(level.breakables, level.breakables);
 
 		super.update(elapsed);
 
@@ -91,6 +92,22 @@ class PlayState extends FlxState
 		player.fadeCam();
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
-		trace("ur mum");
+
+		resetLevel();
+		hud.updateHUD(">You Died!");
+	}
+
+	private function resetLevel():Void
+	{
+		remove(level.platforms);
+		remove(level.breakables);
+		remove(level.hazards);
+		level.reset();
+		level.setMap(currentMap);
+		add(level.platforms);
+		add(level.breakables);
+		add(level.hazards);
+		add(level.breakables);
+		add(level.hazards);
 	}
 }
