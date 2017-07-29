@@ -13,9 +13,8 @@ class PlayState extends FlxState
 	private var fx:FX;
 
 	private var level:Level;
-	
 	private var currentMap = 0;
-	
+
 
 	override public function create():Void
 	{
@@ -67,6 +66,9 @@ class PlayState extends FlxState
 			remove(level.platforms);
 			level.setMap(currentMap + 1);
 			add(level.platforms);
+			add(level.breakables);
+			add(level.hazards);
+
 			hud.updateHUD(">Teleported!");
 		}
 	}
