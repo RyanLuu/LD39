@@ -71,9 +71,6 @@ class PlayState extends FlxState
 			add(level.breakables);
 			add(level.hazards);
 
-			var transitionIn = new FlxSprite(320, 120, AssetPaths.transition_in__png);
-			FlxTween.tween(transitionIn, {x: transitionIn.x - 320 }, .33);
-			//add(transitionIn);
 			hud.updateHUD(">Teleporting!");
 			hud.updateHUD(">Teleported!");
 		}
