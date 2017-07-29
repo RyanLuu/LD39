@@ -5,7 +5,6 @@ import flixel.tile.FlxTilemap;
 import flixel.FlxObject;
 import flixel.math.FlxPoint;
 import flixel.group.FlxGroup;
-import flixel.FlxCamera;
 
 class Level
 {
@@ -22,13 +21,10 @@ class Level
 
     public function new(map:Int=0)
 	{
+        spawn = new FlxPoint();
+        reset();
         setMap(map);
         platforms.follow();
-        spawn = new FlxPoint();
-        grpTeleporter = new FlxGroup();
-        hazards = new FlxGroup();
-        breakables = new FlxGroup();
-        loader.loadEntities(placeEntities, "entities");
     }
 
     public function reset():Void
@@ -36,13 +32,13 @@ class Level
         grpTeleporter = new FlxGroup();
         hazards = new FlxGroup();
         breakables = new FlxGroup();
-        loader.loadEntities(placeEntities, "entities");
     }
 
     public function setMap(map)
     {
         loader = new FlxOgmoLoader(maps[map]);
         platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "platforms");
+        loader.loadEntities(placeEntities, "entities");
 		platforms.setTileProperties(0, FlxObject.ANY);
 		platforms.setTileProperties(1, FlxObject.NONE);
     }
@@ -74,5 +70,5 @@ class Level
         //breakables.add(new BreakableBlock(215,338)); //DELETE LATER
 	}
 
-
+    
 }
