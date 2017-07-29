@@ -2,8 +2,6 @@ package;
 
 import flixel.FlxState;
 import flixel.FlxG;
-import flixel.tweens.FlxTween;
-import flixel.FlxSprite;
 
 class PlayState extends FlxState
 {
@@ -30,11 +28,8 @@ class PlayState extends FlxState
 
 		add(level.platforms);
 		add(player);
-<<<<<<< HEAD
 		add(level.breakables);
-=======
 		add(hud);
->>>>>>> origin/master
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
 		player.enableDrill(this);
@@ -51,13 +46,6 @@ class PlayState extends FlxState
 		FlxG.collide(player, level.platforms);
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, level.hazards, playerHitHazard);
-<<<<<<< HEAD
-		FlxG.overlap(player.drill, level.breakables, drillSmashed);
-		FlxG.collide(player, level.breakables);
-		FlxG.collide(level.platforms, level.breakables); //for moving block around
-
-=======
->>>>>>> origin/master
 	}
 
 	private function setupCamera(player:Player):Void
