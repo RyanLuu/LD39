@@ -26,8 +26,8 @@ class PlayState extends FlxState
 
 		map = new FlxOgmoLoader(AssetPaths.TestingGrounds__oel);
 		platforms = map.loadTilemap(AssetPaths.tiles__png, 16, 16, "platforms");
-		platforms.setTileProperties(1, FlxObject.ANY);
-		platforms.setTileProperties(0, FlxObject.NONE);
+		platforms.setTileProperties(0, FlxObject.ANY);
+		platforms.setTileProperties(1, FlxObject.NONE);
 		
 		add(platforms);
 		add(player);
@@ -39,6 +39,9 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+
+		FlxG.collide(player, platforms);
+
 	}
 
 	public function setupCamera(player:Player):Void
