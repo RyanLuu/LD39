@@ -30,10 +30,6 @@ class PlayState extends FlxState
 
 		add(level.platforms);
 		add(player);
-<<<<<<< HEAD
-		player.enableDrill(this);
-=======
->>>>>>> origin/master
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
 		player.enableDrill(this);
