@@ -78,6 +78,7 @@ class PlayState extends FlxState
 			add(level.breakables);
 			add(level.hazards);
 			hud.updateHUD(">Teleported!");
+			sendPlayerToSpawn(P, level);
 		}
 	}
 
@@ -90,8 +91,7 @@ class PlayState extends FlxState
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
 		player.fadeCam();
-		player.x = level.spawn.x;
-		player.y = level.spawn.y;
+		sendPlayerToSpawn(player, level);
 
 		resetLevel();
 		hud.updateHUD(">You Died!");
@@ -109,5 +109,11 @@ class PlayState extends FlxState
 		add(level.hazards);
 		add(level.breakables);
 		add(level.hazards);
+	}
+
+	private function sendPlayerToSpawn(player:Player, level:Level)
+	{
+		player.x = level.spawn.x;
+		player.y = level.spawn.y;
 	}
 }
