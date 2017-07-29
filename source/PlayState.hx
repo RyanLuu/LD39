@@ -67,16 +67,13 @@ class PlayState extends FlxState
 
 	private function playerTouchedTele(P:Player, T:Teleportation):Void
 	{
+		P.fadeCam();
 		if (P.alive && P.exists)
 		{
 			remove(level.platforms);
 			level.setMap(currentMap + 1);
 			add(level.platforms);
-
-			var transitionIn = new FlxSprite(320, 120, AssetPaths.transition_in__png);
-			FlxTween.tween(transitionIn, {x: transitionIn.x - 320 }, .33);
-			//add(transitionIn);
-			hud.updateHUD(">Teleporting!");
+			hud.updateHUD(">Teleported!");
 		}
 	}
 
