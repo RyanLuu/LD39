@@ -26,13 +26,14 @@ class PlayState extends FlxState
 		super.create();
 
 		map = new FlxOgmoLoader(AssetPaths.TestingGrounds__oel);
+		grpTeleporter = new FlxGroup();
 		platforms = map.loadTilemap(AssetPaths.tiles__png, 16, 16, "platforms");
 		platforms.setTileProperties(0, FlxObject.ANY);
 		platforms.setTileProperties(1, FlxObject.NONE);
 
-		map.loadEntities(placeEntities, "entities");
 
 		player = new Player();
+		map.loadEntities(placeEntities, "entities");
 		hud = new HUD();
 
 		add(platforms);
@@ -56,15 +57,15 @@ class PlayState extends FlxState
 		FlxG.camera.follow(player, TOPDOWN, 1);
 	}
 
-	private function placeEntities(entityName:String, entityData:Xml)
+	private function placeEntities(entityName:String, entityData:Xml):Void
 	{
-		var x:Float = Std.parseInt(entityData.get("x"));
-		var y:Float = Std.parseInt(entityData.get("y"));
+		var x:Int = Std.parseInt(entityData.get("x"));
+		var y:Int = Std.parseInt(entityData.get("y"));
 
 		if (entityName == "player")
 		{
 			player.x = x;
-			player.y - y;
+			player.y = y;
 		}
 
 		if (entityName == "teleport")
