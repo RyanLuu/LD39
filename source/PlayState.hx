@@ -4,6 +4,8 @@ import flixel.FlxState;
 import flixel.FlxG;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
+import flixel.util.FlxCollision;
+
 
 class PlayState extends FlxState
 {
@@ -42,12 +44,29 @@ class PlayState extends FlxState
 	{
 
 		FlxG.collide(player, level.platforms);
+		//FlxCollision.pixelPerfectCheck(player, level.platforms, 1);
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, level.hazards, playerHitHazard);
 		FlxG.overlap(player.drill, level.breakables, drillSmashed);
 		FlxG.collide(player, level.breakables);
-		FlxG.collide(level.platforms, level.breakables); //for moving block around
+		FlxG.collide(level.platforms, level.breakables); 
 		FlxG.collide(level.breakables, level.breakables);
+
+		//for(i in 0...level.breakables.length)
+		//{
+			//for(j in 0...level.breakables.length)
+			//{
+				//if(FlxG.pixelPerfectOverlap(cast (level.breakables.members[i], FlxSprite), cast (level.breakables.members[j]),200))
+				//{
+					//FlxG.collide(level.breakables.members[i], level.breakables.members[j]);
+				//}
+				//trace(i);
+				//if(FlxCollision.pixelPerfectCheck(cast (level.breakables.members[i], FlxSprite), cast (level.breakables.members[j]),1))
+				//{
+					//FlxG.collide(level.breakables.members[i], level.breakables.members[j]);
+				//}
+			//}
+		//}
 
 		super.update(elapsed);
 
