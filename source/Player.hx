@@ -16,7 +16,6 @@ class Player extends FlxSprite
     public static inline var GRAVITY = 420;
     public static inline var JUMP_SPEED = 200;
 
-
     public function new(?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
@@ -42,7 +41,7 @@ class Player extends FlxSprite
         }
         if (!isTouching(FlxObject.FLOOR))
         {
-            acceleration.x *= 0.1;
+            acceleration.x *= 0.5;
         }
 
         if (jetpack)
