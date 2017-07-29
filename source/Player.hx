@@ -105,6 +105,11 @@ class Player extends FlxSprite
         state.add(drill);
     }
 
+    public function disableDrill(?state:FlxState=null):Void
+    {
+        state.remove(drill);
+    }
+
     public function fadeCam()
     {
         camera = new FlxCamera(0,0,FlxG.width,FlxG.height,2);
