@@ -11,9 +11,8 @@ class PlayState extends FlxState
 	private var fx:FX;
 
 	private var level:Level;
-	
 	private var currentMap = 0;
-	
+
 
 	override public function create():Void
 	{
