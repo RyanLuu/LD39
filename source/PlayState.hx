@@ -69,7 +69,7 @@ class PlayState extends FlxState
 		FlxG.collide(level.platforms, level.boulders);
 		FlxG.collide(level.boulders, level.boulders);
 		FlxG.overlap(player.boi, level.boulders, boiDrill);
-		FlxG.overlap(player, level.hudEvents, triggerHudEvent);
+		FlxG.overlap(player, level.events, triggerEvent);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
 		player.checkBounds(playerFellOffMap);
 		//for(i in 0...level.breakables.length)
@@ -212,8 +212,12 @@ class PlayState extends FlxState
 		player.boi.setPos(player.x, player.y);
 	}
 
-	private function triggerHudEvent(P:Player, H:HUDEvent):Void
+	private function triggerEvent(P:Player, E):Void
 	{
-		hud.updateHUD(H.message);
+		if (Std.is(E, HUDEvent)) {
+			hud.updateHUD(E.message);
+		} else if (Std.is(E, SpecialEvent)) {
+			SpecialEvent.trigger(E.id);
+		}
 	}
 }

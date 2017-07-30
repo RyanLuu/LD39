@@ -17,8 +17,7 @@ class Level
     public var grpTeleporter:FlxGroup;
     public var hazards:FlxGroup;
     public var boulders:FlxGroup;
-    public var hudEvents:FlxGroup;
-
+    public var events:FlxGroup;
 
     public function new(map:Int=0)
 	{
@@ -33,7 +32,7 @@ class Level
         grpTeleporter = new FlxGroup();
         hazards = new FlxGroup();
         boulders = new FlxGroup();
-        hudEvents = new FlxGroup();
+        events = new FlxGroup();
         loader = new FlxOgmoLoader(getMapPath(current));
         platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "tiles");
         loader.loadEntities(placeEntities, "entities");
@@ -68,7 +67,13 @@ class Level
         if (entityName == "hudEvent")
         {
             var message:String = entityData.get("message");
-            hudEvents.add(new HUDEvent(x, y, message));
+            events.add(new HUDEvent(x, y, message));
+        }
+
+        if (entityName == "specialEvent")
+        {
+            var id:String = entityData.get("id");
+            events.add(new SpecialEvent(x, y, id));
         }
 	}
 
