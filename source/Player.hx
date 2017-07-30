@@ -25,7 +25,7 @@ class Player extends FlxSprite
         maxVelocity.x = RUN_SPEED;
         maxVelocity.y = JUMP_SPEED * 1.5;
         drillObj = new Drill();
-        drillObj.makeGraphic(5, 5, FlxColor.BLACK);
+        drillObj.makeGraphic(5, 5, FlxColor.BLUE);
     }
 
     override public function update(elapsed:Float):Void

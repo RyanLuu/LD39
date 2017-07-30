@@ -9,6 +9,7 @@ class Boulder extends FlxSprite
 {
 
     var hitCount = 30;
+    var slamCount = 2;
 
     public function new(?X:Float, ?Y:Float):Void
     {
@@ -27,6 +28,13 @@ class Boulder extends FlxSprite
         acceleration.y = 420;
         immovable = false;
     }
+
+    public function slam()
+    {
+        slamCount--;
+        if(slamCount <= 0) smash();
+    }
+
     public function drill():Void
     {
         hitCount--;
