@@ -2,10 +2,7 @@ package;
 
 import flixel.FlxState;
 import flixel.FlxG;
-import flixel.tweens.FlxTween;
-import flixel.FlxSprite;
-import flixel.util.FlxCollision;
-
+import flixel.FlxObject;
 
 class PlayState extends FlxState
 {
@@ -32,9 +29,9 @@ class PlayState extends FlxState
 		add(level.platforms);
 		add(level.breakables);
 		add(player);
+		add(player.drillObj);
 		add(hud);
 		sendPlayerToSpawn(player, level);
-		player.enableDrill(this);
 
 		setupCamera(player);
 
@@ -42,16 +39,18 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
+		super.update(elapsed);
 
 		FlxG.collide(player, level.platforms);
 		//FlxCollision.pixelPerfectCheck(player, level.platforms, 1);
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, level.hazards, playerHitHazard);
-		FlxG.overlap(player.drill, level.breakables, drillSmashed);
+		FlxG.overlap(player.drillObj, level.breakables, drillSmashed);
 		FlxG.collide(player, level.breakables);
-		FlxG.collide(level.platforms, level.breakables); 
+		FlxG.collide(level.platforms, level.breakables);
 		FlxG.collide(level.breakables, level.breakables);
-
+		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
+		player.updateDrill();
 		//for(i in 0...level.breakables.length)
 		//{
 			//for(j in 0...level.breakables.length)
@@ -68,7 +67,6 @@ class PlayState extends FlxState
 			//}
 		//}
 
-		super.update(elapsed);
 
 	}
 
@@ -79,11 +77,11 @@ class PlayState extends FlxState
 
 	private function playerTouchedTele(P:Player, T:Teleportation):Void
 	{
-		P.fadeCam();
+		CameraFX.fade();
 		if (P.alive && P.exists)
 		{
 
-			P.fadeCam();
+			CameraFX.fade();
 			currentMap++;
 			resetLevel();
 			hud.updateHUD(">Teleported!");
@@ -93,7 +91,7 @@ class PlayState extends FlxState
 
 	private function drillSmashed(drill:Drill, block:BreakableBlock):Void
 	{
-		if(drill.isSmashing)
+		if(drill.drilling)
 		{
 			block.smash();
 		}
@@ -102,7 +100,7 @@ class PlayState extends FlxState
 
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
-		player.fadeCam();
+		CameraFX.fade();
 		sendPlayerToSpawn(player, level);
 
 		resetLevel();
