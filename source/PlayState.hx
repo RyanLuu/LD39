@@ -134,7 +134,6 @@ class PlayState extends FlxState
 	{
 		currentLevel = level;
 		this.level.setMap(level);
-		resetLevel();
 	}
 
 	private function playerFellOffMap():Void
@@ -153,6 +152,7 @@ class PlayState extends FlxState
 		remove(level.boulders);
 		remove(level.hazards);
 		level.reset();
+		setLevel(currentLevel);
 		add(level.platforms);
 		add(level.boulders);
 		add(level.hazards);
