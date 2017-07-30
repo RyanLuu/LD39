@@ -105,22 +105,9 @@ class PlayState extends FlxState
 
 		
 
-		if (FlxG.keys.justPressed.B)
-        {
-			CameraFX.addFilter(CameraFX.blur);
-			hud.updateHUD("Camera Malfunction Detected");
-        }
-
-        if (FlxG.keys.justPressed.I)
-        {
-			CameraFX.addFilter(CameraFX.red);
-			hud.updateHUD("Color Camera Failure: Switching to IR Sensor");
-        }
-
-		if(FlxG.keys.justPressed.R)
-		{
-			CameraFX.clearFilters();
-			hud.updateHUD("Color Camera Power Restored");
+		if (FlxG.keys.justPressed.R) {
+			resetLevel();
+			sendPlayerToSpawn(player, level);
 		}
 
 		if (FlxG.keys.justPressed.F12)
