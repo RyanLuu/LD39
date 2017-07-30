@@ -38,7 +38,8 @@ class PlayState extends FlxState
 		pausedText.scrollFactor.set(0, 0);
 		pausedText.alignment = CENTER;
 
-		add(new FlxBackdrop(AssetPaths.bg__png, 2, 0, true, false));
+		add(new FlxBackdrop(AssetPaths.bg__png, 0.25, 0, true, false));
+		add(new FlxBackdrop(AssetPaths.bg1__png, 0.5, 0, true, false));
 		add(level.platforms);
 		add(level.boulders);
 		add(player);
