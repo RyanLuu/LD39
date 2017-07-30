@@ -3,6 +3,7 @@ package;
 import flixel.FlxState;
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.math.FlxPoint;
 
 class PlayState extends FlxState
 {
@@ -19,7 +20,7 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		FlxG.fixedTimestep = false;
+		FlxG.fixedTimestep = true;
 		FlxG.mouse.useSystemCursor = true;
 
 		player = new Player();
@@ -85,11 +86,16 @@ class PlayState extends FlxState
 			hud.updateHUD("Color Camera Power Restored");
 		}
 
+		if (FlxG.keys.justPressed.F12)
+		{
+			FlxG.debugger.visible = !FlxG.debugger.visible;
+		}
 	}
 
 	private function setupCamera(player:Player):Void
 	{
 		FlxG.camera.follow(player, TOPDOWN, 1);
+		FlxG.camera.focusOn(new FlxPoint(player.x, player.y));
 	}
 
 	private function playerTouchedTele(P:Player, T:Teleportation):Void
