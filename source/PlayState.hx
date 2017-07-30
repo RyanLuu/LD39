@@ -5,6 +5,8 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.math.FlxPoint;
 import flixel.addons.display.FlxBackdrop;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
 
 class PlayState extends FlxState
 {
@@ -12,6 +14,7 @@ class PlayState extends FlxState
 	private var player:Player;
 	private var hud:HUD;
 	private var fx:FX;
+	private var pausedText:FlxText;
 
 	private var level:Level;
 
@@ -28,6 +31,10 @@ class PlayState extends FlxState
 		player = new Player();
 		level = new Level();
 		hud = new HUD();
+		pausedText = new FlxText(0, FlxG.height / 2, FlxG.width);
+		pausedText.text = "Game Paused";
+		pausedText.scrollFactor.set(0, 0);
+		pausedText.alignment = CENTER;
 
 		add(new FlxBackdrop(AssetPaths.bg__png, 2, 0, true, false));
 		add(level.platforms);
@@ -47,6 +54,7 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
+
 		super.update(elapsed);
 
 
@@ -79,18 +87,15 @@ class PlayState extends FlxState
 
 		if(FlxG.keys.justPressed.ESCAPE)
 		{
-			if(!paused)
-			{
-				paused = true;
+			paused = !paused;
+			if (paused) {
+				add(pausedText);
+				forEach(function(x) x.active = false, true);
 				CameraFX.addFilter(CameraFX.gray);
-				player.canMove = false;
-				hud.updateHUD("PAUSED");
-			}	
-			else 
-			{
-				paused = false;
+			} else {
+				remove(pausedText);
+				forEach(function(x) x.active = true, true);
 				CameraFX.removeFilter(CameraFX.gray);
-				player.canMove = true;
 			}
 		}
 

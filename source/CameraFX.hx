@@ -34,6 +34,11 @@ class CameraFX {
         updateFilters();
     }
 
+    public static function removeFilter(filter:BitmapFilter) {
+        filters.remove(filter);
+        FlxG.camera.setFilters(filters);
+    }
+    
     private static function updateFilters() {
         FlxG.camera.setFilters(filters);
     }
@@ -43,8 +48,4 @@ class CameraFX {
         FlxG.camera.setFilters(filters);
     }
 
-    public static function removeFilter(filter:BitmapFilter) {
-        filters.remove(filter);
-        FlxG.camera.setFilters(filters);
-    }
 }
