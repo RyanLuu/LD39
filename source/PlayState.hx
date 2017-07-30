@@ -33,7 +33,7 @@ class PlayState extends FlxState
 		add(level.platforms);
 		add(level.boulders);
 		add(player);
-		add(player.drillObj);
+		add(player.boi);
 		add(hud);
 		sendPlayerToSpawn(player, level);
 
@@ -54,12 +54,11 @@ class PlayState extends FlxState
 		//FlxCollision.pixelPerfectCheck(player, level.platforms, 1);
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, level.hazards, playerHitHazard);
-		FlxG.overlap(player.drillObj, level.boulders, drillSmashed);
 		FlxG.overlap(player, level.boulders, bodyslam);
 		FlxG.collide(level.platforms, level.boulders);
 		FlxG.collide(level.boulders, level.boulders);
+		FlxG.overlap(player.boi, level.boulders, boiDrill);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
-		player.updateDrill();
 		player.checkBounds(playerFellOffMap);
 		//for(i in 0...level.breakables.length)
 		//{
@@ -148,9 +147,9 @@ class PlayState extends FlxState
 		FlxG.collide(player, boulder);
 	}
 
-	private function drillSmashed(drill:Drill, boulder:Boulder):Void
+	private function boiDrill(boi:Boi, boulder:Boulder):Void
 	{
-		if(drill.drilling)
+		if(boi.mode == 1)
 		{
 			boulder.drill();
 		}
@@ -198,5 +197,6 @@ class PlayState extends FlxState
 	{
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
+		player.boi.setPos(player.x, player.y);
 	}
 }

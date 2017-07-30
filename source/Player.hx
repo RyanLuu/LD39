@@ -8,9 +8,8 @@ import flixel.FlxObject;
 class Player extends FlxSprite
 {
     var jetpack = true;
-    var drill = true;
 
-    public var drillObj:Drill;
+    public var boi:Boi;
 
     public static inline var RUN_SPEED = 80;
     public static inline var GRAVITY = 420;
@@ -22,13 +21,14 @@ class Player extends FlxSprite
     public function new(?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
-        makeGraphic(10, 10);
+        loadGraphic(AssetPaths.rover__png);
+        setFacingFlip(FlxObject.LEFT, true, false);
+        setFacingFlip(FlxObject.RIGHT, false, false);
         drag.x = RUN_SPEED * 8;
         acceleration.y = GRAVITY;
         maxVelocity.x = RUN_SPEED;
         maxVelocity.y = JUMP_SPEED * 1.5;
-        drillObj = new Drill();
-        drillObj.makeGraphic(5, 5, FlxColor.BLUE);
+        boi = new Boi(this);
     }
 
     override public function update(elapsed:Float):Void
@@ -49,10 +49,10 @@ class Player extends FlxSprite
             acceleration.x *= 0.5;
         }
 
-        if (drill)
-        {
-            drillObj.drilling = FlxG.keys.pressed.SPACE && canMove;
-        }
+       // if (drill)
+        //{
+          //  drillObj.drilling = FlxG.keys.pressed.SPACE && canMove;
+        //}
 
         if (jetpack)
         {
@@ -75,6 +75,11 @@ class Player extends FlxSprite
             }
         }
 
+        boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
+
+        super.update(elapsed);
+        boi.update(elapsed);
+        /*
         if(velocity.x != 0)
         {
             if(facing == FlxObject.RIGHT){
@@ -117,6 +122,7 @@ class Player extends FlxSprite
 
         if(drillObj.drilling) drillObj.angle += 10;
         if(drillObj.angle % 90 != 0) drillObj.angle += 5;
+        */
     }
 
     public function checkBounds(f: Void -> Void):Void
