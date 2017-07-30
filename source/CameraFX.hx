@@ -10,8 +10,14 @@ import flixel.FlxG;
 class CameraFX {
 
     public static var blur = new BlurFilter();
-    public static var gray = new ColorMatrixFilter([.5,.5,.5,0,0,.5,.5,.5,0,0,.5,.5,.5,0,0,0,0,0,1,0]);
-    public static var red = new ColorMatrixFilter([3,3,3,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0]);
+    public static var gray = new ColorMatrixFilter([0.3, 0.3, 0.3, 0.0, 0.0, 
+                                                    0.3, 0.3, 0.3, 0.0, 0.0, 
+                                                    0.3, 0.3, 0.3, 0.0, 0.0, 
+                                                    0.0, 0.0, 0.0, 1.0, 0.0]);
+    public static var red = new ColorMatrixFilter([0.5, 0.5, 0.5, 0.0, 0.0, 
+                                                   0.0, 0.1, 0.0, 0.0, 0.0, 
+                                                   0.0, 0.0, 0.1, 0.0, 0.0, 
+                                                   0.0, 0.0, 0.0, 1.0, 0.0]);
 
     private static var filters = [];
     private static var blurry = false;
