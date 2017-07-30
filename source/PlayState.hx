@@ -79,11 +79,11 @@ class PlayState extends FlxState
 
 	private function playerTouchedTele(P:Player, T:Teleportation):Void
 	{
-		P.fadeCam();
+		P.fadeCam(level);
 		if (P.alive && P.exists)
 		{
 
-			P.fadeCam();
+			P.fadeCam(level);
 			currentMap++;
 			resetLevel();
 			hud.updateHUD(">Teleported!");
@@ -102,7 +102,7 @@ class PlayState extends FlxState
 
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
-		player.fadeCam();
+		player.fadeCam(level);
 		sendPlayerToSpawn(player, level);
 
 		resetLevel();

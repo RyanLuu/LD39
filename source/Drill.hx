@@ -28,8 +28,14 @@ class Drill extends FlxSprite
         if(FlxG.keys.pressed.SPACE){
             isSmashing = true;
             color = FlxColor.RED;
+            angle += 15;
         }
         else {
+            if(angle % 90 != 0)
+            {
+                angle += 5;
+            }
+            
             isSmashing = false;
             color = FlxColor.BLACK;
         }

@@ -8,6 +8,8 @@ import flixel.util.FlxColor;
 import flixel.FlxCamera;
 import flixel.FlxState;
 import flash.filters.BlurFilter;
+import flash.filters.ColorMatrixFilter;
+import flash.filters.*;
 
 
 class Player extends FlxSprite
@@ -84,21 +86,42 @@ class Player extends FlxSprite
             blurCamera(true);
         }
 
+        if (FlxG.keys.justPressed.I)
+        {
+            irCamera(true);
+        }
+
         super.update(elapsed);
     }
 
-    //fix later
     public function blurCamera(blurred:Bool):Void
     {
         
         if(blurred){
-            var filter = new BlurFilter();
+            var filter = new BlurFilter(5,5,5);
             camera.setFilters([filter]);
         }
         else {
             camera.setFilters([]); 
         }
     }
+
+
+    //http://kazzkiq.github.io/svg-color-filter/
+    //website for testing color matrices
+    public function irCamera(filtered:Bool):Void
+    {
+        if(filtered){
+            var filterGray = new ColorMatrixFilter([.5,.5,.5,0,0,.5,.5,.5,0,0,.5,.5,.5,0,0,0,0,0,1,0]); //grayscale
+            var filterRed = new ColorMatrixFilter([3,3,3,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0]); //redscale - idk it looks cool
+            //var filter = new GlowFilter();
+            camera.setFilters([filterRed]);
+        }
+        else {
+            camera.setFilters([]); 
+        }
+    }
+
 
     public function enableDrill(?state:FlxState=null):Void
     {
@@ -111,11 +134,12 @@ class Player extends FlxSprite
         state.remove(drill);
     }
 
-    public function fadeCam()
+    public function fadeCam(level:Level)
     {
         camera = new FlxCamera(0,0,FlxG.width,FlxG.height,2);
         camera.follow(this, TOPDOWN, 1);
         FlxG.cameras.reset(camera);
-        camera.flash(FlxColor.BLACK, 1);
+        level.platforms.follow();
+        camera.flash(FlxColor.BLACK, 1); //add
     }
 }
