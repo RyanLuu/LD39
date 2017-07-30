@@ -81,45 +81,39 @@ class Player extends FlxSprite
             }
         }
 
-        if (FlxG.keys.justPressed.B)
-        {
-            blurCamera(true);
-        }
+        //if (FlxG.keys.justPressed.B)
+        //{
+          //  blurCamera(true);
+        //}
 
-        if (FlxG.keys.justPressed.I)
-        {
-            irCamera(true);
-        }
+        //if (FlxG.keys.justPressed.I)
+        //{
+          //  irCamera(true);
+        //}
 
         super.update(elapsed);
     }
 
-    public function blurCamera(blurred:Bool):Void
+    public function blurCamera():Void
     {
-        
-        if(blurred){
-            var filter = new BlurFilter(5,5,5);
-            camera.setFilters([filter]);
-        }
-        else {
-            camera.setFilters([]); 
-        }
+        var filter = new BlurFilter(5,5,5);
+        camera.setFilters([filter]);
     }
 
 
     //http://kazzkiq.github.io/svg-color-filter/
     //website for testing color matrices
-    public function irCamera(filtered:Bool):Void
+    public function irCamera():Void
     {
-        if(filtered){
-            var filterGray = new ColorMatrixFilter([.5,.5,.5,0,0,.5,.5,.5,0,0,.5,.5,.5,0,0,0,0,0,1,0]); //grayscale
-            var filterRed = new ColorMatrixFilter([3,3,3,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0]); //redscale - idk it looks cool
-            //var filter = new GlowFilter();
-            camera.setFilters([filterRed]);
-        }
-        else {
-            camera.setFilters([]); 
-        }
+        var filterGray = new ColorMatrixFilter([.5,.5,.5,0,0,.5,.5,.5,0,0,.5,.5,.5,0,0,0,0,0,1,0]); //grayscale
+        var filterRed = new ColorMatrixFilter([3,3,3,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0]); //redscale - idk it looks cool
+        //var filter = new GlowFilter();
+        camera.setFilters([filterGray]);
+    }
+
+    public function colorCamera():Void
+    {
+        camera.setFilters([]);
     }
 
 

@@ -68,6 +68,25 @@ class PlayState extends FlxState
 			//}
 		//}
 
+		if (FlxG.keys.justPressed.B)
+        {
+			hud.updateHUD("Camera Malfunction Detected");
+			haxe.Timer.delay(player.blurCamera,2200);
+            //player.blurCamera(true);
+        }
+
+        if (FlxG.keys.justPressed.I)
+        {
+			hud.updateHUD("Color Camera Failure: Switching to IR Sensor");
+            player.irCamera();
+        }
+
+		if(FlxG.keys.justPressed.R)
+		{
+			player.colorCamera();
+			hud.updateHUD("Color Camera Power Restored");
+		}
+
 		super.update(elapsed);
 
 	}
