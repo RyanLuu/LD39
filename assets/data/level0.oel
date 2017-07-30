@@ -33,6 +33,6 @@
     <teleport id="0" x="1168" y="192" to="1" />
     <spawn id="2" x="144" y="176" />
     <hudEvent id="3" x="160" y="0" message="CRITICAL: Thermoelectric generator damaged.&#xD;&#xA;Rapidly losing power." />
-    <hudEvent id="1" x="512" y="0" message="CRITICAL: Terminate all research and evacuate immediately." />
+    <hudEvent id="1" x="576" y="0" message="CRITICAL: Terminate all research and evacuate immediately." />
   </entities>
 </level>
