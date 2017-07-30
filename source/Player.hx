@@ -75,11 +75,6 @@ class Player extends FlxSprite
             }
         }
 
-        if (FlxG.keys.justPressed.B)
-        {
-            CameraFX.toggleBlur();
-        }
-
         super.update(elapsed);
         
     }
