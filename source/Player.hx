@@ -71,6 +71,29 @@ class Player extends FlxSprite
 
         super.update(elapsed);
         boi.update(elapsed);
+        /*
+        if(velocity.x != 0)
+        {
+            if(facing == FlxObject.RIGHT){
+                angle += 15;
+            }
+            else {
+                angle -= 15;
+            }
+        }
+        else if(angle % 90 != 0)
+        {
+            if(facing == FlxObject.RIGHT){
+                angle += 15;
+            }
+            else {
+                angle -= 15;
+            }
+        }
+        else {
+            angle = 0;
+        }
+        */
     }
 
     public function checkBounds(f: Void -> Void):Void

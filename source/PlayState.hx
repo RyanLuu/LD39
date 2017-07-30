@@ -36,6 +36,10 @@ class PlayState extends FlxState
 
 		setupCamera(player);
 
+		SoundPlayer.setup();
+		SoundPlayer.loadTrack(0);
+		SoundPlayer.playMusic();
+
 	}
 
 	override public function update(elapsed:Float):Void
@@ -114,7 +118,7 @@ class PlayState extends FlxState
 	private function bodyslam(player:Player, boulder:Boulder)
 	{
 		if (player.velocity.y > 275) {
-			boulder.smash();
+			boulder.slam();
 		}
 		FlxG.collide(player, boulder);
 	}
