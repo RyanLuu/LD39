@@ -36,6 +36,10 @@ class PlayState extends FlxState
 
 		setupCamera(player);
 
+		SoundPlayer.setup();
+		SoundPlayer.loadTrack(0);
+		SoundPlayer.playMusic();
+
 	}
 
 	override public function update(elapsed:Float):Void
