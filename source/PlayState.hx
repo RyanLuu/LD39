@@ -15,8 +15,6 @@ class PlayState extends FlxState
 
 	private var level:Level;
 
-	private var currentLevel:Int = 0;
-
 	private var paused:Bool = false;
 
 
@@ -167,10 +165,9 @@ class PlayState extends FlxState
 		hud.updateHUD(">You Died!");
 	}
 
-	private function setLevel(level:Int)
+	private function setLevel(new_level:Int)
 	{
-		currentLevel = level;
-		this.level.setMap(currentLevel);
+		this.level.current = new_level;
 		resetLevel();
 	}
 
@@ -189,7 +186,7 @@ class PlayState extends FlxState
 		remove(level.platforms);
 		remove(level.boulders);
 		remove(level.hazards);
-		level.reset();
+		level.load();
 		add(level.platforms);
 		add(level.boulders);
 		add(level.hazards);

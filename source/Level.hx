@@ -8,6 +8,8 @@ import flixel.group.FlxGroup;
 
 class Level
 {
+    public var current:Int;
+
 	private var loader:FlxOgmoLoader;
     public var platforms:FlxTilemap;
 
@@ -19,22 +21,18 @@ class Level
 
     public function new(map:Int=0)
 	{
+        this.current = map;
         spawn = new FlxPoint();
-        reset();
-        setMap(map);
+        load();
         platforms.follow();
     }
 
-    public function reset():Void
+    public function load():Void
     {
         grpTeleporter = new FlxGroup();
         hazards = new FlxGroup();
         boulders = new FlxGroup();
-    }
-
-    public function setMap(map)
-    {
-        loader = new FlxOgmoLoader(getMapPath(map));
+        loader = new FlxOgmoLoader(getMapPath(current));
         platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "tiles");
         loader.loadEntities(placeEntities, "entities");
     }
