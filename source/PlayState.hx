@@ -215,7 +215,7 @@ class PlayState extends FlxState
 	private function triggerEvent(P:Player, E):Void
 	{
 		if (Std.is(E, HUDEvent)) {
-			hud.updateHUD(E.message);
+			E.trigger(hud);
 		} else if (Std.is(E, SpecialEvent)) {
 			SpecialEvent.trigger(E.id);
 		}
