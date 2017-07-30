@@ -128,7 +128,7 @@ class PlayState extends FlxState
 			FlxG.debugger.visible = !FlxG.debugger.visible;
 		}
 
-		prompter.update();
+		prompter.update(level.current);
 	}
 
 	private function setupCamera(player:Player):Void
