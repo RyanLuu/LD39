@@ -72,6 +72,28 @@ class Player extends FlxSprite
             }
         }
 
+        if(velocity.x != 0)
+        {
+            if(facing == FlxObject.RIGHT){
+                angle += 15;
+            }
+            else {
+                angle -= 15;
+            }
+        }
+        else if(angle % 90 != 0)
+        {
+            if(facing == FlxObject.RIGHT){
+                angle += 15;
+            }
+            else {
+                angle -= 15;
+            }
+        }
+        else {
+            angle = 0;
+        }
+
         super.update(elapsed);
         
     }
@@ -80,6 +102,9 @@ class Player extends FlxSprite
     {
         drillObj.x = if (facing == FlxObject.RIGHT) x + 10 else x - 5;
         drillObj.y = y;
+
+        if(drillObj.drilling) drillObj.angle += 10;
+        if(drillObj.angle % 90 != 0) drillObj.angle += 5;
     }
 
     public function checkBounds(f: Void -> Void):Void
