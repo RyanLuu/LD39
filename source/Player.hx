@@ -16,6 +16,9 @@ class Player extends FlxSprite
     public static inline var GRAVITY = 420;
     public static inline var JUMP_SPEED = 200;
 
+    public var canMove = true;
+
+
     public function new(?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
@@ -33,12 +36,12 @@ class Player extends FlxSprite
         acceleration.x = 0;
         if(FlxG.keys.pressed.LEFT)
         {
-            facing = FlxObject.LEFT;
+            if(canMove) facing = FlxObject.LEFT;
             acceleration.x -= drag.x;
         }
         else if(FlxG.keys.pressed.RIGHT)
         {
-            facing = FlxObject.RIGHT;
+            if(canMove) facing = FlxObject.RIGHT;
             acceleration.x += drag.x;
         }
         if (!isTouching(FlxObject.FLOOR))
@@ -48,7 +51,7 @@ class Player extends FlxSprite
 
         if (drill)
         {
-            drillObj.drilling = FlxG.keys.pressed.SPACE;
+            drillObj.drilling = FlxG.keys.pressed.SPACE && canMove;
         }
 
         if (jetpack)
@@ -92,6 +95,15 @@ class Player extends FlxSprite
         }
         else {
             angle = 0;
+        }
+
+        if(!canMove)
+        {
+            angle = 0;
+            velocity.y = 0;
+            velocity.x = 0;
+            acceleration.x = 0;
+            acceleration.y = 0;
         }
 
         super.update(elapsed);

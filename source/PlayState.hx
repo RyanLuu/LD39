@@ -16,6 +16,9 @@ class PlayState extends FlxState
 
 	private var currentLevel:Int = 0;
 
+	private var paused:Bool = false;
+
+
 	override public function create():Void
 	{
 		super.create();
@@ -46,6 +49,7 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
+
 		FlxG.collide(player, level.platforms);
 		//FlxCollision.pixelPerfectCheck(player, level.platforms, 1);
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
@@ -72,6 +76,26 @@ class PlayState extends FlxState
 				//}
 			//}
 		//}
+
+
+		if(FlxG.keys.justPressed.ESCAPE)
+		{
+			if(!paused)
+			{
+				paused = true;
+				CameraFX.addFilter(CameraFX.gray);
+				player.canMove = false;
+				hud.updateHUD("PAUSED");
+			}	
+			else 
+			{
+				paused = false;
+				CameraFX.removeFilter(CameraFX.gray);
+				player.canMove = true;
+			}
+		}
+
+		
 
 		if (FlxG.keys.justPressed.B)
         {
