@@ -27,6 +27,9 @@ class Boi extends FlxSprite {
         } else if (mode == 1) {
             desiredPos.x = if (player.facing == FlxObject.RIGHT) player.x + player.width + 8 else player.x - 8;
             desiredPos.y = player.y;
+        } else if (mode == 2) {
+            desiredPos.x = x;
+            desiredPos.y = y;
         }
         var dx = desiredPos.x - x;
         var dy = desiredPos.y - y;

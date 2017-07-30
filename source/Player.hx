@@ -77,6 +77,16 @@ class Player extends FlxSprite
 
         boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
 
+        if(!canMove)
+        {
+            angle = 0;
+            velocity.y = 0;
+            velocity.x = 0;
+            acceleration.x = 0;
+            acceleration.y = 0;
+            boi.mode = 2;
+        }
+
         super.update(elapsed);
         boi.update(elapsed);
         /*

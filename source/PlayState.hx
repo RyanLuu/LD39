@@ -85,12 +85,14 @@ class PlayState extends FlxState
 				CameraFX.addFilter(CameraFX.gray);
 				player.canMove = false;
 				hud.updateHUD("PAUSED");
+				for(boulder in level.boulders) cast(boulder, Boulder).freeze = true; 
 			}	
 			else 
 			{
 				paused = false;
 				CameraFX.removeFilter(CameraFX.gray);
 				player.canMove = true;
+				for(boulder in level.boulders) cast(boulder, Boulder).freeze = false;
 			}
 		}
 
