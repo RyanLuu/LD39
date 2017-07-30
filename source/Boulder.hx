@@ -5,17 +5,17 @@ import flixel.FlxSprite;
 import flixel.util.FlxColor;
 
 
-class BreakableBlock extends FlxSprite
+class Boulder extends FlxSprite
 {
 
-    var hitCount = 175;
+    var hitCount = 75;
 
     public function new(?X:Float, ?Y:Float):Void
     {
         super(X,Y);
-        width = 16;
-        height = 16;
-        makeGraphic(16,16,FlxColor.GREEN);
+        width = 32;
+        height = 32;
+        loadGraphic(AssetPaths.boulder__png);
         immovable = true;
     }
 

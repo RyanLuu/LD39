@@ -13,8 +13,8 @@ class PlayState extends FlxState
 	private var fx:FX;
 
 	private var level:Level;
-	private var currentMap = 0;
 
+	private var currentLevel:Int = 0;
 
 	override public function create():Void
 	{
@@ -28,7 +28,7 @@ class PlayState extends FlxState
 		hud = new HUD();
 
 		add(level.platforms);
-		add(level.breakables);
+		add(level.boulders);
 		add(player);
 		add(player.drillObj);
 		add(hud);
@@ -46,10 +46,10 @@ class PlayState extends FlxState
 		//FlxCollision.pixelPerfectCheck(player, level.platforms, 1);
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, level.hazards, playerHitHazard);
-		FlxG.overlap(player.drillObj, level.breakables, drillSmashed);
-		FlxG.collide(player, level.breakables);
-		FlxG.collide(level.platforms, level.breakables);
-		FlxG.collide(level.breakables, level.breakables);
+		FlxG.overlap(player.drillObj, level.boulders, drillSmashed);
+		FlxG.collide(player, level.boulders);
+		FlxG.collide(level.platforms, level.boulders);
+		FlxG.collide(level.boulders, level.boulders);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
 		player.updateDrill();
 		//for(i in 0...level.breakables.length)
@@ -105,14 +105,13 @@ class PlayState extends FlxState
 		{
 
 			CameraFX.fade();
-			currentMap++;
-			resetLevel();
+			setLevel(T.to);
 			hud.updateHUD(">Teleported!");
 			sendPlayerToSpawn(P, level);
 		}
 	}
 
-	private function drillSmashed(drill:Drill, block:BreakableBlock):Void
+	private function drillSmashed(drill:Drill, block:Boulder):Void
 	{
 		if(drill.drilling)
 		{
@@ -130,15 +129,21 @@ class PlayState extends FlxState
 		hud.updateHUD(">You Died!");
 	}
 
-	private function resetLevel():Void
+	private function setLevel(level:Int)
+	{
+		currentLevel = level;
+		this.level.setMap(level);
+		resetLevel();
+	}
+
+	private function resetLevel()
 	{
 		remove(level.platforms);
-		remove(level.breakables);
+		remove(level.boulders);
 		remove(level.hazards);
 		level.reset();
-		level.setMap(currentMap);
 		add(level.platforms);
-		add(level.breakables);
+		add(level.boulders);
 		add(level.hazards);
 	}
 

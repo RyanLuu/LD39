@@ -8,15 +8,13 @@ import flixel.group.FlxGroup;
 
 class Level
 {
-    private var maps = [AssetPaths.TestingGrounds__oel, AssetPaths.TeleTesting__oel];
-
 	private var loader:FlxOgmoLoader;
     public var platforms:FlxTilemap;
 
     public var spawn:FlxPoint;
     public var grpTeleporter:FlxGroup;
     public var hazards:FlxGroup;
-    public var breakables:FlxGroup;
+    public var boulders:FlxGroup;
 
 
     public function new(map:Int=0)
@@ -31,21 +29,14 @@ class Level
     {
         grpTeleporter = new FlxGroup();
         hazards = new FlxGroup();
-        breakables = new FlxGroup();
+        boulders = new FlxGroup();
     }
 
     public function setMap(map)
     {
-        loader = new FlxOgmoLoader(maps[map]);
-        platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "platforms");
+        loader = new FlxOgmoLoader(getMapPath(map));
+        platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "tiles");
         loader.loadEntities(placeEntities, "entities");
-		platforms.setTileProperties(0, FlxObject.ANY);
-		platforms.setTileProperties(1, FlxObject.NONE);
-        spawn = new FlxPoint();
-        grpTeleporter = new FlxGroup();
-        hazards = new FlxGroup();
-        breakables = new FlxGroup();
-        loader.loadEntities(placeEntities,"entities");
     }
 
     private function placeEntities(entityName:String, entityData:Xml):Void
@@ -60,7 +51,8 @@ class Level
 
 		if (entityName == "teleport")
 		{
-			grpTeleporter.add(new Teleportation(x,y));
+            var to:Int = Std.parseInt(entityData.get("to"));
+			grpTeleporter.add(new Teleportation(x,y, to));
 		}
 
 		if (entityName == "hazard")
@@ -68,13 +60,14 @@ class Level
 			hazards.add(new Hazard(x,y));
 		}
 
-        if (entityName == "breakableBlock")
+        if (entityName == "boulder")
         {
-            breakables.add(new BreakableBlock(x,y));
-        }
-        
-        //breakables.add(new BreakableBlock(215,338)); //DELETE LATER
+            boulders.add(new Boulder(x,y));
+        }        
 	}
 
-    
+    private function getMapPath(i:Int):String
+    {
+        return "assets/data/level" + i + ".oel";
+    }
 }
