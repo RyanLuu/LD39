@@ -41,6 +41,7 @@ class PlayState extends FlxState
 		add(level.boulders);
 		add(player);
 		add(player.boi);
+		add(player.exhaust);
 		add(hud);
 		sendPlayerToSpawn(player, level);
 

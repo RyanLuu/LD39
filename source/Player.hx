@@ -10,6 +10,7 @@ class Player extends FlxSprite
     var jetpack = true;
 
     public var boi:Boi;
+    public var exhaust:Exhaust;
 
     public static inline var RUN_SPEED = 80;
     public static inline var GRAVITY = 420;
@@ -26,6 +27,7 @@ class Player extends FlxSprite
         maxVelocity.x = RUN_SPEED;
         maxVelocity.y = JUMP_SPEED * 1.5;
         boi = new Boi(this);
+        exhaust = new Exhaust(this);
         animation.add("idle", [0,1,2,1], 6);
         animation.play("idle");
     }
@@ -53,6 +55,7 @@ class Player extends FlxSprite
         if (jetpack)
         {
             acceleration.y = if (FlxG.keys.pressed.UP) -JUMP_SPEED * 0.5 else GRAVITY;
+            if (FlxG.keys.pressed.UP) exhaust.enable() else exhaust.disable();
         }
         if(FlxG.keys.justPressed.UP && isTouching(FlxObject.FLOOR))
         {
@@ -75,6 +78,7 @@ class Player extends FlxSprite
 
         super.update(elapsed);
         boi.update(elapsed);
+        exhaust.update(elapsed);
         /*
         if(velocity.x != 0)
         {
