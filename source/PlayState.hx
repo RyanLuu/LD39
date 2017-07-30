@@ -61,14 +61,15 @@ class PlayState extends FlxState
 		super.update(elapsed);
 
 
+		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.collide(player, level.platforms);
 		//FlxCollision.pixelPerfectCheck(player, level.platforms, 1);
-		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, level.hazards, playerHitHazard);
 		FlxG.overlap(player, level.boulders, bodyslam);
 		FlxG.collide(level.platforms, level.boulders);
 		FlxG.collide(level.boulders, level.boulders);
 		FlxG.overlap(player.boi, level.boulders, boiDrill);
+		FlxG.overlap(player, level.hudEvents, triggerHudEvent);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
 		player.checkBounds(playerFellOffMap);
 		//for(i in 0...level.breakables.length)
@@ -145,7 +146,7 @@ class PlayState extends FlxState
 			CameraFX.fade();
 			setLevel(T.to);
 			hud.updateHUD(">Teleported!");
-			sendPlayerToSpawn(P, level);
+			sendPlayerToSpawn(P,level);
 		}
 	}
 
@@ -206,6 +207,13 @@ class PlayState extends FlxState
 	{
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
+		player.velocity.x = 0;
+		player.velocity.y = 0;
 		player.boi.setPos(player.x, player.y);
+	}
+
+	private function triggerHudEvent(P:Player, H:HUDEvent):Void
+	{
+		hud.updateHUD(H.message);
 	}
 }

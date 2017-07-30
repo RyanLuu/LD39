@@ -14,7 +14,7 @@ class Player extends FlxSprite
 
     public static inline var RUN_SPEED = 80;
     public static inline var GRAVITY = 420;
-    public static inline var JUMP_SPEED = 200;
+    public static inline var JUMP_SPEED = 210;
 
     public function new(?X:Float=0, ?Y:Float=0)
     {

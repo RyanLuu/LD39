@@ -64,8 +64,8 @@
   <EntityDefinitions>
     <EntityDefinition Name="spawn" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>24</Width>
+        <Height>24</Height>
       </Size>
       <Origin>
         <X>0</X>
@@ -122,6 +122,23 @@
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="hudEvent" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>480</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Rectangle" ImagePath="" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="255" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="message" Default="Sample text" MaxChars="-1" MultiLine="true" />
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>

@@ -9,7 +9,7 @@ using flixel.util.FlxSpriteUtil;
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
-    private static var TEXT_SPEED = 0.25;
+    private static var TEXT_SPEED = 0.5;
     private static var CLEAR_AFTER = 10;
 
     private var back:FlxSprite;
@@ -21,23 +21,22 @@ class HUD extends FlxTypedGroup<FlxSprite>
     {
         super();
         back = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.BLACK);
-        back.drawRect(0, 19, FlxG.width, 1, FlxColor.WHITE);
-        textMessage = new FlxText(0, 2, 0, "", 8);
-        textMessage.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
-        textMessage.alignment = RIGHT;
-        textMessage.x = 1;
+        textMessage = new FlxText(0, 2, FlxG.width, "", 8);
+        // textMessage.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
         add(back);
         add(textMessage);
-        forEach(function(spr:FlxSprite)
-        {
-            spr.scrollFactor.set(0, 0);
-        });
+        forEach(function(spr:FlxSprite) spr.scrollFactor.set(0, 0));
     }
 
     public function updateHUD(message:String = ""):Void
     {
         text = message;
         count = 0;
+        if (text.indexOf("CRITICAL:") == 0) {
+            textMessage.color = FlxColor.RED;
+        } else {
+            textMessage.color = FlxColor.WHITE;
+        }
     }
 
     override public function update(elapsed:Float):Void
@@ -49,6 +48,13 @@ class HUD extends FlxTypedGroup<FlxSprite>
         if (count > text.length + CLEAR_AFTER)
         {
             text = "";
+        }
+        if (textMessage.text.length == 0) {
+            back.visible = false;
+        } else {
+            back.visible = true;
+            var h = textMessage.text.split("\n").length * 20;
+            back.makeGraphic(FlxG.width, h, FlxColor.BLACK);
         }
     }
 }
