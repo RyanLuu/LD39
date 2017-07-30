@@ -8,7 +8,7 @@ import flixel.util.FlxColor;
 class Boulder extends FlxSprite
 {
 
-    var hitCount = 75;
+    var hitCount = 30;
 
     public function new(?X:Float, ?Y:Float):Void
     {
