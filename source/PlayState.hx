@@ -32,7 +32,7 @@ class PlayState extends FlxState
 		player = new Player();
 		level = new Level();
 		hud = new HUD();
-		prompter = new Prompter(player,hud);
+		//prompter = new Prompter(player,hud);
 		pausedText = new FlxText(0, FlxG.height / 2, FlxG.width);
 		pausedText.text = "Game Paused";
 		pausedText.scrollFactor.set(0, 0);
@@ -128,7 +128,7 @@ class PlayState extends FlxState
 			FlxG.debugger.visible = !FlxG.debugger.visible;
 		}
 
-		prompter.update(level.current);
+		//prompter.update(level.current);
 	}
 
 	private function setupCamera(player:Player):Void
