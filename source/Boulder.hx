@@ -19,7 +19,15 @@ class Boulder extends FlxSprite
         immovable = true;
     }
 
-    public function smash():Void
+    public function smash()
+    {
+        hitCount = 0;
+        this.color = FlxColor.BLUE;
+        drag.x = 300;
+        acceleration.y = 420;
+        immovable = false;
+    }
+    public function drill():Void
     {
         hitCount--;
         if(hitCount <= 0)
@@ -27,10 +35,7 @@ class Boulder extends FlxSprite
             //width = 0; 
             //height = 0; 
             //makeGraphic(16,16,FlxColor.RED);
-            this.color = FlxColor.BLUE;
-            drag.x = 300;
-            acceleration.y = 420;
-            immovable = false;
+            smash();
             //width = 0;
             //height = 0;
             //change image or something idk

@@ -23,7 +23,7 @@ class Player extends FlxSprite
         drag.x = RUN_SPEED * 8;
         acceleration.y = GRAVITY;
         maxVelocity.x = RUN_SPEED;
-        maxVelocity.y = JUMP_SPEED;
+        maxVelocity.y = JUMP_SPEED * 1.5;
         drillObj = new Drill();
         drillObj.makeGraphic(5, 5, FlxColor.BLACK);
     }

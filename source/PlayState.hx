@@ -47,7 +47,7 @@ class PlayState extends FlxState
 		FlxG.overlap(player, level.grpTeleporter, playerTouchedTele);
 		FlxG.overlap(player, level.hazards, playerHitHazard);
 		FlxG.overlap(player.drillObj, level.boulders, drillSmashed);
-		FlxG.collide(player, level.boulders);
+		FlxG.overlap(player, level.boulders, bodyslam);
 		FlxG.collide(level.platforms, level.boulders);
 		FlxG.collide(level.boulders, level.boulders);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
@@ -112,11 +112,23 @@ class PlayState extends FlxState
 		}
 	}
 
-	private function drillSmashed(drill:Drill, block:Boulder):Void
+	private function bodyslam(player:Player, boulder:Boulder)
+	{
+		var x = player.velocity.x;
+		var y = player.velocity.y;
+		var vel = Math.sqrt(x * x + y * y);
+		if (vel > 275) {
+			boulder.smash();
+			trace("smash");
+		}
+		FlxG.collide(player, boulder);
+	}
+
+	private function drillSmashed(drill:Drill, boulder:Boulder):Void
 	{
 		if(drill.drilling)
 		{
-			block.smash();
+			boulder.drill();
 		}
 	}
 
