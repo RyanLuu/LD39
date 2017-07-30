@@ -145,7 +145,7 @@ class PlayState extends FlxState
 
 			CameraFX.fade();
 			setLevel(T.to);
-			hud.updateHUD(">Teleported!");
+			hud.updateHUD("Teleported!");
 			sendPlayerToSpawn(P,level);
 		}
 	}
@@ -173,7 +173,7 @@ class PlayState extends FlxState
 		sendPlayerToSpawn(player, level);
 
 		resetLevel();
-		hud.updateHUD(">You Died!");
+		hud.updateHUD("You Died!");
 	}
 
 	private function setLevel(new_level:Int)
@@ -188,7 +188,7 @@ class PlayState extends FlxState
 		sendPlayerToSpawn(player, level);
 
 		resetLevel();
-		hud.updateHUD(">You Died!");
+		hud.updateHUD("You Died!");
 	}
 
 
