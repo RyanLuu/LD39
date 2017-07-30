@@ -18,7 +18,7 @@ class Player extends FlxSprite
     public function new(?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
-        loadGraphic(AssetPaths.rover__png);
+        loadGraphic(AssetPaths.rover__png, true, 24, 24);
         setFacingFlip(FlxObject.LEFT, true, false);
         setFacingFlip(FlxObject.RIGHT, false, false);
         drag.x = RUN_SPEED * 8;
@@ -26,6 +26,8 @@ class Player extends FlxSprite
         maxVelocity.x = RUN_SPEED;
         maxVelocity.y = JUMP_SPEED * 1.5;
         boi = new Boi(this);
+        animation.add("idle", [0,1,2,1], 6);
+        animation.play("idle");
     }
 
     override public function update(elapsed:Float):Void
