@@ -81,4 +81,9 @@ class Player extends FlxSprite
         drillObj.x = if (facing == FlxObject.RIGHT) x + 10 else x - 5;
         drillObj.y = y;
     }
+
+    public function checkBounds(f: Void -> Void):Void
+    {
+        if (y > (FlxG.height*FlxG.camera.zoom+30)) f();
+    }
 }

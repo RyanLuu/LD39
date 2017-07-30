@@ -52,6 +52,7 @@ class PlayState extends FlxState
 		FlxG.collide(level.breakables, level.breakables);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
 		player.updateDrill();
+		player.checkBounds(playerFellOffMap);
 		//for(i in 0...level.breakables.length)
 		//{
 			//for(j in 0...level.breakables.length)
@@ -129,6 +130,17 @@ class PlayState extends FlxState
 		resetLevel();
 		hud.updateHUD(">You Died!");
 	}
+
+
+	private function playerFellOffMap():Void
+	{
+		CameraFX.fade();
+		sendPlayerToSpawn(player, level);
+
+		resetLevel();
+		hud.updateHUD(">You Died!");
+	}
+
 
 	private function resetLevel():Void
 	{
