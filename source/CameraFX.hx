@@ -5,13 +5,11 @@ import flixel.util.FlxColor;
 import flash.filters.BlurFilter;
 import flash.filters.ColorMatrixFilter;
 import flash.filters.BitmapFilter;
-import flash.filters.ShaderFilter;
 import flixel.FlxG;
 
 class CameraFX {
 
     public static var blur = new BlurFilter();
-    public static var shader = new ShaderFilter();
     public static var gray = new ColorMatrixFilter([0.3, 0.3, 0.3, 0.0, 0.0, 
                                                     0.3, 0.3, 0.3, 0.0, 0.0, 
                                                     0.3, 0.3, 0.3, 0.0, 0.0, 
