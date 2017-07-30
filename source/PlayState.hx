@@ -114,12 +114,8 @@ class PlayState extends FlxState
 
 	private function bodyslam(player:Player, boulder:Boulder)
 	{
-		var x = player.velocity.x;
-		var y = player.velocity.y;
-		var vel = Math.sqrt(x * x + y * y);
-		if (vel > 275) {
+		if (player.velocity.y > 275) {
 			boulder.smash();
-			trace("smash");
 		}
 		FlxG.collide(player, boulder);
 	}
