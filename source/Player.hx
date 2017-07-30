@@ -37,6 +37,16 @@ class Player extends FlxSprite
             acceleration.x *= 0.5;
         }
 
+        if (FlxG.keys.pressed.LEFT)
+        {
+            facing = FlxObject.LEFT; 
+            acceleration.x = -drag.x;
+        }
+        else if (FlxG.keys.pressed.RIGHT)
+        {
+            facing = FlxObject.RIGHT;
+            acceleration.x = drag.x;                
+        }
 
         if (jetpack)
         {
