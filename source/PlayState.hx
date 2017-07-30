@@ -4,6 +4,7 @@ import flixel.FlxState;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.math.FlxPoint;
+import flixel.addons.display.FlxBackdrop;
 
 class PlayState extends FlxState
 {
@@ -30,6 +31,7 @@ class PlayState extends FlxState
 		level = new Level();
 		hud = new HUD();
 
+		add(new FlxBackdrop(AssetPaths.bg__png, 2, 0, true, false));
 		add(level.platforms);
 		add(level.boulders);
 		add(player);
@@ -168,7 +170,8 @@ class PlayState extends FlxState
 	private function setLevel(level:Int)
 	{
 		currentLevel = level;
-		this.level.setMap(level);
+		this.level.setMap(currentLevel);
+		resetLevel();
 	}
 
 	private function playerFellOffMap():Void
@@ -187,7 +190,6 @@ class PlayState extends FlxState
 		remove(level.boulders);
 		remove(level.hazards);
 		level.reset();
-		setLevel(currentLevel);
 		add(level.platforms);
 		add(level.boulders);
 		add(level.hazards);
