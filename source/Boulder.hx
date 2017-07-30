@@ -11,9 +11,6 @@ class Boulder extends FlxSprite
     var hitCount = 30;
     var slamCount = 2;
 
-    public var freeze:Bool;
-
-
     public function new(?X:Float, ?Y:Float):Void
     {
         super(X,Y);
@@ -21,17 +18,10 @@ class Boulder extends FlxSprite
         height = 32;
         loadGraphic(AssetPaths.boulder__png);
         immovable = true;
-        freeze = false;
     }
 
     override public function update(elapsed:Float):Void
     {
-        if(freeze)
-        {
-            velocity.y = 0;
-            velocity.x = 0;
-        }
-
         super.update(elapsed);
     }
 
