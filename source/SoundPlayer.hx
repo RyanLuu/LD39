@@ -44,23 +44,31 @@ class SoundPlayer
         musicPlayer.close();
     }
 
-    private function nextOpenPlayer():Sound
+    public static function playJump():Void
     {
-        if(fxPlayer0.bytesTotal == 0){ 
-            return fxPlayer0;
-        }
-        else if (fxPlayer1.bytesTotal == 0){
-            return fxPlayer1;
-        }
-        else if (fxPlayer2.bytesTotal ==0){
-            return fxPlayer2;
-        }
-        else{
+        var player = nextOpenPlayer();
+        player.load(new URLRequest(AssetPaths.Jump__wav));
+        player.play(0,0);
+
+    }
+
+    private static function nextOpenPlayer():Sound
+    {
+        //if(fxPlayer0.bytesTotal == 0){ 
+          //  return fxPlayer0;
+        //}
+        //else if (fxPlayer1.bytesTotal == 0){
+          //  return fxPlayer1;
+       // }
+        //else if (fxPlayer2.bytesTotal == 0){
+          //  return fxPlayer2;
+        //}
+        //else{
             //no players available
             //make a new one
             //not good for speed unless necessary
-            return new Sound();
-        }
+          //  return new Sound();
+        //}
         return new Sound();
         
     }

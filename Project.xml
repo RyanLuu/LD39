@@ -78,6 +78,7 @@
 
 	<!-- _________________________________ Custom _______________________________ -->
 	<assets path="assets/data/Spellbound.mp3" embed="false" />
+	<assets path="assets/data/Jump.wav" embed="false" />
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 </project>

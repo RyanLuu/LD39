@@ -50,9 +50,9 @@ class PlayState extends FlxState
 
 		setupCamera(player);
 
-		SoundPlayer.setup();
-		SoundPlayer.loadTrack(0);
-		SoundPlayer.playMusic();
+		//SoundPlayer.setup();
+		//SoundPlayer.loadTrack(0);
+		//SoundPlayer.playMusic();
 
 	}
 
