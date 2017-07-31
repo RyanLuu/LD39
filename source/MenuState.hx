@@ -38,24 +38,24 @@ class MenuState extends FlxState
 	{
         super.update(elapsed);
 
-        if (playButton.y < 130 && down == true) // down
-        {
-            playButton.y = playButton.y + 0.5;
+        // if (playButton.y < 130 && down == true) // down
+        // {
+        //     playButton.y = playButton.y + 0.5;
 
-            if (playButton.y == 130) 
-            {
-                down = false;
-            }
-        } 
-        else if (playButton.y > 110 && down == false) // up
-        {
-            playButton.y = playButton.y - 0.5;
+        //     if (playButton.y == 130) 
+        //     {
+        //         down = false;
+        //     }
+        // } 
+        // else if (playButton.y > 110 && down == false) // up
+        // {
+        //     playButton.y = playButton.y - 0.5;
 
-            if (playButton.y == 110) 
-            {
-                down = true;
-            }
-        }
+        //     if (playButton.y == 110) 
+        //     {
+        //         down = true;
+        //     }
+        // }
     }
 
     private function clickPlay():Void
