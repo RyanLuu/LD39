@@ -39,7 +39,7 @@
     <boulder id="6" x="784" y="64" />
     <boulder id="8" x="880" y="320" />
     <teleport id="9" x="1264" y="448" to="5" />
-    <hudEvent id="10" x="752" y="0" message="Scanners indicate these boulders may cause a possible cave-in..." />
+    <hudEvent id="10" x="752" y="0" message="Scanners indicate these boulders may cause a cave-in..." />
     <boulder id="7" x="928" y="48" />
     <specialEvent id="11" x="80" y="0" eventid="disableJetpack" />
   </entities>
