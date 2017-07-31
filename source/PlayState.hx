@@ -133,7 +133,6 @@ class PlayState extends FlxState
 		{
 			CameraFX.transition(function func() {
 				setLevel(T.to);
-				hud.updateHUD("Teleported!");
 				sendPlayerToSpawn(P,level);
 			});
 		}
