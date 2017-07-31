@@ -60,7 +60,7 @@ class MenuState extends FlxState
 
     private function clickPlay():Void
     {
-        FlxG.switchState(new PlayState());
+        CameraFX.transition(function f() FlxG.switchState(new PlayState()));
     }
 
 }

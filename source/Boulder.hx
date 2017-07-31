@@ -28,7 +28,7 @@ class Boulder extends FlxSprite
     public function smash()
     {
         hitCount = 0;
-        this.color = FlxColor.BROWN;
+        this.color = FlxColor.RED;
         drag.x = 300;
         acceleration.y = 420;
         immovable = false;
