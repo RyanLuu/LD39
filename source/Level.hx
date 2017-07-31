@@ -20,12 +20,12 @@ class Level
     public var boulders:FlxGroup;
     public var events:FlxGroup;
 
-    public function new(map:Int=7)
+    public function new(map:Int=0)
 	{
         this.current = map;
         spawn = new FlxPoint();
         load();
-        platforms.follow();
+        //platforms.follow();
     }
 
     public function load():Void
@@ -37,6 +37,7 @@ class Level
         loader = new FlxOgmoLoader(getMapPath(current));
         platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "tiles");
         loader.loadEntities(placeEntities, "entities");
+        platforms.follow();
     }
 
     private function placeEntities(entityName:String, entityData:Xml):Void
