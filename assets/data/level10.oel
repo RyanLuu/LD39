@@ -31,6 +31,9 @@
 36,36,36,36,36,36,36,36,36,36,36,36,36,36,10,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1</tiles>
   <entities>
     <spawn id="0" x="80" y="256" />
-    <specialEvent id="1" x="96" y="256" eventid="endGame" />
+    <specialEvent id="1" x="96" y="0" eventid="endGame" />
+    <specialEvent id="2" x="80" y="0" eventid="endGame" />
+    <specialEvent id="3" x="112" y="0" eventid="endGame" />
+    <specialEvent id="4" x="64" y="0" eventid="endGame" />
   </entities>
 </level>
