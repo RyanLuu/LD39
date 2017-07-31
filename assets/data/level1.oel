@@ -33,8 +33,8 @@
     <spawn id="0" x="160" y="256" />
     <boulder id="1" x="464" y="288" />
     <hudEvent id="2" x="416" y="0" message="Weaken boulders with [SPACE]." />
-    <teleport id="3" x="1120" y="304" to="0" />
-    <teleport id="4" x="1120" y="272" to="0" />
+    <teleport id="3" x="1120" y="304" to="2" />
+    <teleport id="4" x="1120" y="272" to="2" />
     <boulder id="5" x="816" y="80" />
   </entities>
 </level>
