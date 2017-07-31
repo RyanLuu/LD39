@@ -36,11 +36,10 @@ class Boi extends FlxSprite {
         } else if(mode == 2) { //no drill
             mode = 0;
         } else if(mode == 3) { //disabled
-            desiredPos.x = 0;
-            desiredPos.y = 0;
-            x = 0;
-            y = 0;
-            visible = false;
+            desiredPos.x = x;
+            desiredPos.y = y;
+            if(angle < 110) angle += 1;
+            //visible = false;
         } else if(mode == 4) { //re-enable mode
             visible = true;
             mode = 0;

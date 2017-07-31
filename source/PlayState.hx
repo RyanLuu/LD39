@@ -73,6 +73,7 @@ class PlayState extends FlxState
 		FlxG.overlap(player, level.events, triggerEvent);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
 		player.checkBounds(playerFellOffMap);
+		if(player.boi.mode == 3) FlxG.collide(level.platforms, player.boi);
 		//for(i in 0...level.breakables.length)
 		//{
 			//for(j in 0...level.breakables.length)
