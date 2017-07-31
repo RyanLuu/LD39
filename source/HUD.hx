@@ -20,7 +20,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
     public function new()
     {
         super();
-        back = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.BLACK);
+        back = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.fromInt(0x7F000000));
         textMessage = new FlxText(0, 2, FlxG.width, "", 8);
         // textMessage.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
         add(back);
@@ -55,7 +55,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
             back.visible = false;
         } else {
             back.visible = true;
-            var h = textMessage.text.split("\n").length * 20;
+            var h = textMessage.text.split("\n").length * 18;
             back.makeGraphic(FlxG.width, h, FlxColor.BLACK);
         }
     }
