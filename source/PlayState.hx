@@ -297,7 +297,7 @@ class PlayState extends FlxState
 					if(!E.flag){
 						hud.updateHUD("WARNING: Power Supply Extremely Low.");
 						CameraFX.removeFilter(CameraFX.red);
-						CameraFX.removeFilter(CameraFX.blur);
+						//CameraFX.removeFilter(CameraFX.blur);
 						CameraFX.addFilter(CameraFX.gray);
 					}
 				}
