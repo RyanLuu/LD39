@@ -95,9 +95,10 @@
 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10</tiles>
   <entities>
     <teleport id="0" x="624" y="48" to="8" />
-    <spawn id="1" x="-8" y="1424" />
+    <spawn id="1" x="0" y="1424" />
     <teleport id="2" x="624" y="32" to="8" />
     <teleport id="3" x="624" y="16" to="8" />
     <teleport id="4" x="624" y="0" to="8" />
+    <specialEvent id="5" x="608" y="0" eventid="disappearBoi" />
   </entities>
 </level>

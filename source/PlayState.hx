@@ -225,53 +225,73 @@ class PlayState extends FlxState
 		} else if (Std.is(E, SpecialEvent)) {
 			switch E.eventid {
 				case "disableJetpack": {
-					hud.updateHUD("CRITICAL: Disabling enhanced propulsion to conserve power.");
-					player.jetpack = false;
-					player.exhaust.disable();
+					if(!E.flag){
+						hud.updateHUD("CRITICAL: Disabling enhanced propulsion to conserve power.");
+						player.jetpack = false;
+						player.exhaust.disable();
+					}
 				}
 				case "disableBoi": {
-					hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
-					player.boi.mode = 3;
+					if(!E.flag){
+						hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
+						player.boi.mode = 3;
+					}
 				}
 				case "disableDrill": {
-					hud.updateHUD("WARNING: Disabling drill functionality to conserve power.");
-					player.boi.mode = 2;
+					if(!E.flag){
+						hud.updateHUD("WARNING: Disabling drill functionality to conserve power.");
+						player.boi.mode = 2;
+					}
 				}
 				case "irCamera": {
-					hud.updateHUD("WARNING: Switching to IR camera to conserve power.");
-					CameraFX.removeFilter(CameraFX.blur);
-					CameraFX.removeFilter(CameraFX.gray);
-					CameraFX.addFilter(CameraFX.red);
-					CameraFX.addFilter(CameraFX.red);
+					if(!E.flag){
+						hud.updateHUD("WARNING: Switching to IR camera to conserve power.");
+						//CameraFX.removeFilter(CameraFX.blur);
+						//CameraFX.removeFilter(CameraFX.gray);
+						CameraFX.addFilter(CameraFX.red);
+					}
+				}
+				case "disappearBoi": {
+					if(!E.flag) player.boi.mode = 5;
+					player.boi.visible = false;
+					player.boi.immovable = true;
+					//trace("rip");
 				}
 				case "blurCamera": {
-					hud.updateHUD("CRITICAL: Camera Loosing Power.");
-					//CameraFX.removeFilter(CameraFX.red);
-					CameraFX.addFilter(CameraFX.blur);
+					if(!E.flag){
+						hud.updateHUD("CRITICAL: Camera Loosing Power.");
+						//CameraFX.removeFilter(CameraFX.red);
+						CameraFX.addFilter(CameraFX.blur);
+					}
 				}
 				case "grayCamera": {
-					hud.updateHUD("WARNING: Power Supply Extremely Low.");
-					CameraFX.removeFilter(CameraFX.red);
-					CameraFX.removeFilter(CameraFX.blur);
-					CameraFX.addFilter(CameraFX.gray);
+					if(!E.flag){
+						hud.updateHUD("WARNING: Power Supply Extremely Low.");
+						CameraFX.removeFilter(CameraFX.red);
+						CameraFX.removeFilter(CameraFX.blur);
+						CameraFX.addFilter(CameraFX.gray);
+					}
 				}
 				case "sendTransmission": {
-					hud.updateHUD("Transmission sent.");
+					if(!E.flag) hud.updateHUD("Transmission sent.");
 				}
 				case "slowDown": {
-					player.slowDown();
+					if(!E.flag) player.slowDown();
 				}
 				case "endGame": {
-					CameraFX.clearFilters();
-					player.immovable = true;
-					CameraFX.transition(function f() {
-						setLevel(10);
-						sendPlayerToSpawn(player, level);
-					});
-					hud.updateHUD("Transmission received.");
+					if(!E.flag){ 
+						CameraFX.clearFilters();
+						player.immovable = true;
+						CameraFX.transition(function f() {
+							setLevel(10);
+							sendPlayerToSpawn(player, level);
+						});
+						hud.updateHUD("Transmission received.");
+					}
 				}
 				default: "Invalid event triggered.";
 			}
+			E.flag = true;
 		}
 	}
 }
