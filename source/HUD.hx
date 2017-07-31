@@ -39,6 +39,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
             textMessage.color = FlxColor.RED;
         } else if (text.indexOf("WARNING:") == 2) {
             textMessage.color = FlxColor.YELLOW;
+        } else if (text.indexOf("Transmission") == 2) {
+            textMessage.color = FlxColor.GREEN;
         } else {
             textMessage.color = FlxColor.WHITE;
         }

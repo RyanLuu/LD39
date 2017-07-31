@@ -81,6 +81,7 @@
 	<assets path="assets/data/Constance.mp3" embed="false" />
 	<assets path="assets/data/Jump.mp3" embed="false" />
 	<assets path="assets/data/BlockBreak.mp3" embed="false" />
+	<assets path="assets/data/Jetpack.mp3" embed="false" />
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 </project>
