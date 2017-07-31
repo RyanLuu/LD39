@@ -40,6 +40,6 @@
     <boulder id="7" x="928" y="64" />
     <boulder id="8" x="880" y="320" />
     <teleport id="9" x="1264" y="448" to="0" />
-    <hudEvent id="10" x="752" y="0" message="Scanners indicate these boulders may cause a possible cave-in..." />
+    <hudEvent id="10" x="752" y="0" message="Scanners indicate boulders may cause a cave-in below..." />
   </entities>
 </level>
