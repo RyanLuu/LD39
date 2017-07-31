@@ -5,6 +5,7 @@ import openfl.media.Sound;
 import openfl.net.URLRequest;
 import openfl.events.Event;
 import openfl.media.SoundTransform;
+import openfl.media.SoundChannel;
 
 
 class SoundPlayer
@@ -17,6 +18,8 @@ class SoundPlayer
     public static var fxPlayer0:Sound;
     public static var fxPlayer1:Sound;
     public static var fxPlayer2:Sound;
+
+    public static var musicChannel:SoundChannel;
 
 
     public static function setup():Void
@@ -39,12 +42,12 @@ class SoundPlayer
 
     public static function playMusic()
     {
-        musicPlayer.play(0,9999, new SoundTransform(.65, 0));
+        musicChannel = musicPlayer.play(0,9999, new SoundTransform(.65, 0));
     }
 
     public static function stopMusic():Void //il est broke
     {
-        musicPlayer.close();
+        musicChannel.stop();
     }
 
     public static function playJump():Void
