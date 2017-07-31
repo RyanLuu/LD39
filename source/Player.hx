@@ -85,6 +85,6 @@ class Player extends FlxSprite
 
     public function checkBounds(f: Void -> Void):Void
     {
-        if (y > (FlxG.height*FlxG.camera.zoom+30)) f();
+        if (y > (FlxG.height*FlxG.camera.zoom*3+30)) f(); //idk man
     }
 }
