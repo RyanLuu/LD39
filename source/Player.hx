@@ -94,16 +94,12 @@ class Player extends FlxSprite
 
     public function checkBounds(level:Level, f: Void -> Void):Void
     {
-<<<<<<< HEAD
         
-        if (y > level.platforms.height) f(); //idk man
-=======
-        if (y > (FlxG.height*FlxG.camera.zoom+30)) f(); //idk man
+        if (y > level.platforms.height) f();
     }
 
     public function slowDown():Void
     {
         drag.x += 40;
->>>>>>> origin/master
     }
 }
