@@ -4,6 +4,7 @@ package;
 import openfl.media.Sound;
 import openfl.net.URLRequest;
 import openfl.events.Event;
+import openfl.media.SoundTransform;
 
 
 class SoundPlayer
@@ -38,7 +39,7 @@ class SoundPlayer
 
     public static function playMusic()
     {
-        musicPlayer.play(0,9999);
+        musicPlayer.play(0,9999, new SoundTransform(.65, 0));
     }
 
     public static function stopMusic():Void //il est broke
@@ -50,8 +51,14 @@ class SoundPlayer
     {
         var player = nextOpenPlayer();
         player.load(new URLRequest(AssetPaths.Jump__mp3));
-        player.play(0,0);
+        player.play(0,0, new SoundTransform(.1,0));
+    }
 
+    public static function playSmash():Void
+    {
+        var player = nextOpenPlayer();
+        player.load(new URLRequest(AssetPaths.BlockBreak__mp3));
+        player.play(0,0, new SoundTransform(1, 0));
     }
 
     private static function nextOpenPlayer():Sound
