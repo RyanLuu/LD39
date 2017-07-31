@@ -54,6 +54,20 @@ class SoundPlayer
         player.play(0,0, new SoundTransform(.1,0));
     }
 
+    public static function playJet():Void
+    {
+        var player = nextOpenPlayer();
+        player.load(new URLRequest(AssetPaths.Jetpack__mp3));
+        player.play(0,0, new SoundTransform(.08,0));
+    }
+
+    public static function loopJet():Void
+    {
+        var player = nextOpenPlayer();
+        player.load(new URLRequest(AssetPaths.Jetpack__mp3));
+        player.play(200,0, new SoundTransform(1,0));
+    }
+
     public static function playSmash():Void
     {
         var player = nextOpenPlayer();

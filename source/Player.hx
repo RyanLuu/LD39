@@ -54,8 +54,16 @@ class Player extends FlxSprite
 
         if (jetpack)
         {
-            acceleration.y = if (FlxG.keys.anyPressed([UP, W])) -JUMP_SPEED * 0.5 else GRAVITY;
-            if (FlxG.keys.anyPressed([UP, W])) exhaust.enable() else exhaust.disable();
+            if (FlxG.keys.anyPressed([UP, W])) {
+                acceleration.y = -JUMP_SPEED *0.5;
+                exhaust.enable();
+            } else {
+                acceleration.y = GRAVITY;
+                exhaust.disable();
+            }
+            if (FlxG.keys.anyJustPressed([UP,W])) SoundPlayer.playJet();
+            
+            //if (FlxG.keys.anyPressed([UP, W])) exhaust.enable() else exhaust.disable();
         }
         if(FlxG.keys.anyJustPressed([UP, W]) && isTouching(FlxObject.FLOOR))
         {
