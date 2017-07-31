@@ -24,7 +24,7 @@ class SoundPlayer
         fxPlayer1 = new Sound();
         fxPlayer2 = new Sound();
 
-        bkgd0 = new URLRequest("/assets/data/Spellbound.mp3");
+        bkgd0 = new URLRequest("/assets/data/Constance.mp3");//bertuchains
         //musicPlayer.addEventListener(Event.COMPLETE, );
     }
 
