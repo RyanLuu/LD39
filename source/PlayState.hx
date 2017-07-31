@@ -205,12 +205,12 @@ class PlayState extends FlxState
 		} else if (Std.is(E, SpecialEvent)) {
 			switch E.eventid {
 				case "disableJetpack": {
-					hud.updateHUD("WARNING: Disabling enhanced propulsion to conserve power.");
+					hud.updateHUD("CRITICAL: Disabling enhanced propulsion to conserve power.");
 					player.jetpack = false;
 					player.exhaust.disable();
 				}
 				case "disableBoi": {
-					hud.updateHUD("WARNING: Disabling B.O.I. to conserve power.");
+					hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
 					player.boi.mode = 3;
 				}
 				case "disableDrill": {
@@ -222,7 +222,7 @@ class PlayState extends FlxState
 					CameraFX.addFilter(CameraFX.red);
 				}
 				case "blurCamera": {
-					hud.updateHUD("WARNING: Camera Loosing Power");
+					hud.updateHUD("CRITICAL: Camera Loosing Power");
 					CameraFX.removeFilter(CameraFX.red);
 					CameraFX.addFilter(CameraFX.blur);
 				}
