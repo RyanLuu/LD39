@@ -21,6 +21,10 @@ class PlayState extends FlxState
 
 	private var paused:Bool = false;
 
+	private var bg0:FlxBackdrop;
+	private var bg1:FlxBackdrop;
+	private var bg2:FlxBackdrop;
+
 
 	override public function create():Void
 	{
@@ -38,8 +42,12 @@ class PlayState extends FlxState
 		pausedText.scrollFactor.set(0, 0);
 		pausedText.alignment = CENTER;
 
-		add(new FlxBackdrop(AssetPaths.bg__png, 0.25, 0, true, false));
-		add(new FlxBackdrop(AssetPaths.bg1__png, 0.5, 0, true, false));
+		bg0 = new FlxBackdrop(AssetPaths.bg__png, 0.25, 0, true, false);
+		bg1 = new FlxBackdrop(AssetPaths.bg1__png, 0.5, 0, true, false);
+		bg2 = new FlxBackdrop(AssetPaths.bg2__png, 0.5, 0, true, false);
+
+		add(bg0);
+		add(bg1);
 		add(level.platforms);
 		add(level.boulders);
 		add(player);
@@ -188,6 +196,10 @@ class PlayState extends FlxState
 		add(level.platforms);
 		add(level.boulders);
 		add(level.hazards);
+
+		if(level.current == 7){
+			changeBackdrop();
+		}
 	}
 
 	private function sendPlayerToSpawn(player:Player, level:Level)
@@ -197,6 +209,13 @@ class PlayState extends FlxState
 		player.velocity.x = 0;
 		player.velocity.y = 0;
 		player.boi.setPos(player.x, player.y);
+	}
+
+	private function changeBackdrop()
+	{
+		remove(bg0);
+		remove(bg1);
+		add(bg2);
 	}
 
 	private function triggerEvent(P:Player, E):Void
