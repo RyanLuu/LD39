@@ -33,8 +33,8 @@
     <spawn id="3" x="0" y="32" />
     <boulder id="6" x="304" y="272" />
     <hudEvent id="7" x="256" y="0" message="Scanners indicate that missing is not reccomended" />
-    <specialEvent id="1" x="-32" y="0" eventid="" />
-    <hudEvent id="2" x="32" y="0" message="Scanners show that boulder integrity is weak enough to break with a high enough jump." />
+    <specialEvent id="1" x="0" y="0" eventid="" />
+    <hudEvent id="2" x="32" y="0" message="Scanners show that boulder integrity is weaker" />
     <boulder id="8" x="704" y="352" />
     <boulder id="9" x="880" y="224" />
     <boulder id="10" x="944" y="208" />
