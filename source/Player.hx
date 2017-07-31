@@ -23,7 +23,6 @@ class Player extends FlxSprite
         setFacingFlip(FlxObject.LEFT, true, false);
         setFacingFlip(FlxObject.RIGHT, false, false);
         drag.x = RUN_SPEED * 8;
-        acceleration.y = GRAVITY;
         maxVelocity.x = RUN_SPEED;
         maxVelocity.y = JUMP_SPEED * 1.5;
         boi = new Boi(this);
@@ -56,6 +55,8 @@ class Player extends FlxSprite
         {
             acceleration.y = if (FlxG.keys.anyPressed([UP, W])) -JUMP_SPEED * 0.5 else GRAVITY;
             if (FlxG.keys.anyPressed([UP, W])) exhaust.enable() else exhaust.disable();
+        } else {
+            acceleration.y = GRAVITY;
         }
         if(FlxG.keys.anyJustPressed([UP, W]) && isTouching(FlxObject.FLOOR))
         {
@@ -83,8 +84,9 @@ class Player extends FlxSprite
         exhaust.update(elapsed);
     }
 
-    public function checkBounds(f: Void -> Void):Void
+    public function checkBounds(level:Level, f: Void -> Void):Void
     {
-        if (y > (FlxG.height*FlxG.camera.zoom*3+30)) f(); //idk man
+        
+        if (y > level.platforms.height) f(); //idk man
     }
 }

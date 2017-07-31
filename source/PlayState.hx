@@ -72,7 +72,7 @@ class PlayState extends FlxState
 		FlxG.overlap(player.boi, level.boulders, boiDrill);
 		FlxG.overlap(player, level.events, triggerEvent);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
-		player.checkBounds(playerFellOffMap);
+		player.checkBounds(level, playerFellOffMap);
 		if(player.boi.mode == 3) FlxG.collide(level.platforms, player.boi);
 		//for(i in 0...level.breakables.length)
 		//{
@@ -204,35 +204,38 @@ class PlayState extends FlxState
 		if (Std.is(E, HUDEvent)) {
 			E.trigger(hud);
 		} else if (Std.is(E, SpecialEvent)) {
-			switch E.eventid {
-				case "disableJetpack": {
-					hud.updateHUD("CRITICAL: Disabling enhanced propulsion to conserve power.");
-					player.jetpack = false;
-					player.exhaust.disable();
+			if (!E.flagged()) {
+				switch E.eventid {
+					case "disableJetpack": {
+						hud.updateHUD("CRITICAL: Disabling enhanced propulsion to conserve power.");
+						player.jetpack = false;
+						player.exhaust.disable();
+					}
+					case "disableBoi": {
+						hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
+						player.boi.mode = 3;
+					}
+					case "disableDrill": {
+						hud.updateHUD("WARNING: Disabling drill functionality to conserve power.");
+						player.boi.mode = 2;
+					}
+					case "irCamera": {
+						hud.updateHUD("WARNING: Disabling color camera functionality to conserve power.");
+						CameraFX.addFilter(CameraFX.red);
+					}
+					case "blurCamera": {
+						hud.updateHUD("CRITICAL: Camera Loosing Power");
+						CameraFX.removeFilter(CameraFX.red);
+						CameraFX.addFilter(CameraFX.blur);
+					}
+					case "grayCamera": {
+						hud.updateHUD("WARNING: Power Supply Extremely Low");
+						CameraFX.clearFilters();
+						CameraFX.addFilter(CameraFX.gray);
+					}
+					default: "Invalid event triggered.";
 				}
-				case "disableBoi": {
-					hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
-					player.boi.mode = 3;
-				}
-				case "disableDrill": {
-					hud.updateHUD("WARNING: Disabling drill functionality to conserve power.");
-					player.boi.mode = 2;
-				}
-				case "irCamera": {
-					hud.updateHUD("WARNING: Disabling color camera functionality to conserve power.");
-					CameraFX.addFilter(CameraFX.red);
-				}
-				case "blurCamera": {
-					hud.updateHUD("CRITICAL: Camera Loosing Power");
-					CameraFX.removeFilter(CameraFX.red);
-					CameraFX.addFilter(CameraFX.blur);
-				}
-				case "grayCamera": {
-					hud.updateHUD("WARNING: Power Supply Extremely Low");
-					CameraFX.clearFilters();
-					CameraFX.addFilter(CameraFX.gray);
-				}
-				default: "Invalid event triggered.";
+				E.raiseFlag();
 			}
 		}
 	}
