@@ -79,8 +79,8 @@ class Level
 
     private function getMapPath(i:Int):String
     {
-        //return "assets/data/level" + i + ".oel";
+        return "assets/data/level" + i + ".oel";
         //return "assets/data/boulderTest.oel";
-        return "assets/data/jumpTest.oel";
+        //return "assets/data/jumpTest.oel";
     }
 }
