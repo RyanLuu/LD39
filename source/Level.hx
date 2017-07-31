@@ -5,6 +5,7 @@ import flixel.tile.FlxTilemap;
 import flixel.FlxObject;
 import flixel.math.FlxPoint;
 import flixel.group.FlxGroup;
+import flixel.FlxG;
 
 class Level
 {
@@ -19,7 +20,7 @@ class Level
     public var boulders:FlxGroup;
     public var events:FlxGroup;
 
-    public function new(map:Int=7)
+    public function new(map:Int=0)
 	{
         this.current = map;
         spawn = new FlxPoint();
@@ -79,6 +80,8 @@ class Level
 
     private function getMapPath(i:Int):String
     {
+        //if (i == 3) i == 4;
+        if (i == 10) FlxG.switchState(new MenuState());
         return "assets/data/level" + i + ".oel";
         //return "assets/data/boulderTest.oel";
         //return "assets/data/jumpTest.oel";

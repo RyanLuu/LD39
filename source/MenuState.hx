@@ -21,7 +21,8 @@ class MenuState extends FlxState
 		FlxG.mouse.useSystemCursor = true;
 
         playButton = new FlxButton(0, 0, "Play", clickPlay);
-        title = new FlxText(80, 50, FlxG.width, "KRONKBOT", 24);
+        //title = new FlxText(80, 50, FlxG.width, "KRONKBOT", 24);
+        title = new FlxText(30, 50, FlxG.width, "Marvin's Message", 24); //filler title
         title.setBorderStyle(SHADOW, FlxColor.GRAY, 4, 1);
 
         playButton.screenCenter();

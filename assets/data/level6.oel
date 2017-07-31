@@ -34,7 +34,7 @@
     <boulder id="1" x="128" y="192" />
     <boulder id="2" x="160" y="192" />
     <spawn id="3" x="0" y="96" />
-    <teleport id="4" x="1264" y="304" to="0" />
+    <teleport id="4" x="1264" y="304" to="7" />
     <hudEvent id="5" x="80" y="0" message="WARNING: Main power depleted, switching to reserve power supply" />
     <hudEvent id="6" x="272" y="0" message="800 Meters from target transmission zone" />
     <hudEvent id="7" x="480" y="0" message="WARNING: Interface failure imminent" />
