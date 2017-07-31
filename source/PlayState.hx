@@ -219,18 +219,18 @@ class PlayState extends FlxState
 				}
 				case "irCamera": {
 					hud.updateHUD("WARNING: Disabling color camera functionality to conserve power.");
-					CameraFX.addFilter(red);
+					CameraFX.addFilter(CameraFX.red);
 				}
 				case "blurCamera": {
 					hud.updateHUD("WARNING: Camera Loosing Power");
-					CameraFX.removeFilter(red);
-					CameraFX.addFilter(blur);
+					CameraFX.removeFilter(CameraFX.red);
+					CameraFX.addFilter(CameraFX.blur);
 				}
 				case "grayCamera": {
 					hud.updateHUD("WARNING: Power Supply Extremely Low");
-					CameraFX.removeFilter(red);
-					CameraFX.removeFilter(blur);
-					CameraFX.addFilter(gray);
+					CameraFX.removeFilter(CameraFX.red);
+					CameraFX.removeFilter(CameraFX.blur);
+					CameraFX.addFilter(CameraFX.gray);
 				}
 				default: "Invalid event triggered.";
 			}
