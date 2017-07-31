@@ -59,10 +59,11 @@ class Player extends FlxSprite
         }
         if(FlxG.keys.justPressed.UP && isTouching(FlxObject.FLOOR))
         {
-            SoundPlayer.playJump();
             velocity.y = -JUMP_SPEED;
             if (jetpack) {
                 velocity.y *= 0.5;
+            } else {
+                SoundPlayer.playJump();
             }
         }
     
