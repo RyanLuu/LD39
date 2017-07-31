@@ -41,12 +41,12 @@ class Player extends FlxSprite
             acceleration.x *= 0.5;
         }
 
-        if (FlxG.keys.pressed.LEFT || FlxG.keys.pressed.A)
+        if (FlxG.keys.anyPressed([LEFT, A]))
         {
             facing = FlxObject.LEFT; 
             acceleration.x = -drag.x;
         }
-        else if (FlxG.keys.pressed.RIGHT || FlxG.keys.pressed.D)
+        else if (FlxG.keys.anyPressed([RIGHT, D]))
         {
             facing = FlxObject.RIGHT;
             acceleration.x = drag.x;                
@@ -54,10 +54,10 @@ class Player extends FlxSprite
 
         if (jetpack)
         {
-            acceleration.y = if (FlxG.keys.pressed.UP  || FlxG.keys.pressed.W) -JUMP_SPEED * 0.5 else GRAVITY;
-            if (FlxG.keys.pressed.UP || FlxG.keys.pressed.W) exhaust.enable() else exhaust.disable();
+            acceleration.y = if (FlxG.keys.anyPressed([UP, W])) -JUMP_SPEED * 0.5 else GRAVITY;
+            if (FlxG.keys.anyPressed([UP, W])) exhaust.enable() else exhaust.disable();
         }
-        if(FlxG.keys.justPressed.UP || FlxG.keys.pressed.W && isTouching(FlxObject.FLOOR))
+        if(FlxG.keys.anyJustPressed([UP, W]) && isTouching(FlxObject.FLOOR))
         {
             velocity.y = -JUMP_SPEED;
             if (jetpack) {
