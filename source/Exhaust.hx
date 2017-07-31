@@ -27,12 +27,14 @@ class Exhaust extends FlxSprite
 
     override public function update(elapsed:Float):Void
     {
-        facing = player.facing;
-        angle = if(facing == FlxObject.RIGHT) 90+20 else 90-20;
-        angle = if(facing == FlxObject.RIGHT) 90+20 else 90-20;
-        x = if(facing == FlxObject.RIGHT) player.x-4 else player.x+player.width - width+4;
-        y = player.y + player.height -2;
-        super.update(elapsed);
+        if (visible) {
+            facing = player.facing;
+            angle = if(facing == FlxObject.RIGHT) 90+20 else 90-20;
+            angle = if(facing == FlxObject.RIGHT) 90+20 else 90-20;
+            x = if(facing == FlxObject.RIGHT) player.x-4 else player.x+player.width - width+4;
+            y = player.y + player.height -2;
+            super.update(elapsed);
+        }
     }
 
     public function enable():Void

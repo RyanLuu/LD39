@@ -30,10 +30,12 @@ class HUD extends FlxTypedGroup<FlxSprite>
 
     public function updateHUD(message:String = ""):Void
     {
-        text = ">" + message;
+        text = "> " + message;
         count = 0;
-        if (text.indexOf("CRITICAL:") == 1) {
+        if (text.indexOf("CRITICAL:") == 2) {
             textMessage.color = FlxColor.RED;
+        } else if (text.indexOf("WARNING:") == 2) {
+            textMessage.color = FlxColor.YELLOW;
         } else {
             textMessage.color = FlxColor.WHITE;
         }

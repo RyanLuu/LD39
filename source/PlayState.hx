@@ -205,7 +205,14 @@ class PlayState extends FlxState
 		if (Std.is(E, HUDEvent)) {
 			E.trigger(hud);
 		} else if (Std.is(E, SpecialEvent)) {
-			SpecialEvent.trigger(E.id);
+			switch E.eventid {
+				case "disableJetpack": {
+					hud.updateHUD("WARNING: Disabling enhanced propulsion to conserve power.");
+					player.jetpack = false;
+					player.exhaust.disable();
+				}
+				default: "Invalid event triggered.";
+			}
 		}
 	}
 }

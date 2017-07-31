@@ -7,7 +7,7 @@ import flixel.FlxObject;
 
 class Player extends FlxSprite
 {
-    var jetpack = true;
+    public var jetpack = true;
 
     public var boi:Boi;
     public var exhaust:Exhaust;

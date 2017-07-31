@@ -24,17 +24,15 @@ class Boi extends FlxSprite {
             desiredPos.x = if (player.facing == FlxObject.RIGHT) player.x - 16 else player.x + player.width + 16;
             desiredPos.y = player.y;
             desiredPos.y += Math.sin(ctr) * 4;
-            if(angle % 360 != 0 && player.facing == FlxObject.RIGHT) angle += 10;
-            if(angle % 360 != 0 && player.facing == FlxObject.LEFT) angle -= 10;
+            if (angle >= 10) {
+                angle = (angle + 10) % 360;
+            }
             loadGraphic(AssetPaths.boi__png);
         } else if (mode == 1) {
             desiredPos.x = if (player.facing == FlxObject.RIGHT) player.x + player.width + 8 else player.x - 8;
-            desiredPos.y = player.y;
-            if(player.facing == FlxObject.RIGHT) angle += 10 else angle -= 10;
+            desiredPos.y = player.y + 8;
+            angle = (angle + 10) % 360;
             loadGraphic(AssetPaths.boi_drill__png);
-        } else if (mode == 2) {
-            desiredPos.x = x;
-            desiredPos.y = y;
         }
         var dx = desiredPos.x - x;
         var dy = desiredPos.y - y;

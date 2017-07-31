@@ -72,7 +72,7 @@ class Level
 
         if (entityName == "specialEvent")
         {
-            var id:String = entityData.get("id");
+            var id:String = entityData.get("eventid");
             events.add(new SpecialEvent(x, y, id));
         }
 	}
