@@ -39,7 +39,7 @@ class SoundPlayer
         musicPlayer.play(0,9999);
     }
 
-    public static function stopMusic():Void
+    public static function stopMusic():Void //il est broke
     {
         musicPlayer.close();
     }

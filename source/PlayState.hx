@@ -97,10 +97,12 @@ class PlayState extends FlxState
 				add(pausedText);
 				forEach(function(x) x.active = false, true);
 				CameraFX.addFilter(CameraFX.gray);
+				//SoundPlayer.stopMusic();
 			} else {
 				remove(pausedText);
 				forEach(function(x) x.active = true, true);
 				CameraFX.removeFilter(CameraFX.gray);
+				//SoundPlayer.playMusic();
 			}
 		}
 
