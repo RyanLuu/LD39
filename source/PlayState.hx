@@ -217,6 +217,21 @@ class PlayState extends FlxState
 					hud.updateHUD("WARNING: Disabling drill functionality to conserve power.");
 					player.boi.mode = 2;
 				}
+				case "irCamera": {
+					hud.updateHUD("WARNING: Disabling color camera functionality to conserve power.");
+					CameraFX.addFilter(red);
+				}
+				case "blurCamera": {
+					hud.updateHUD("WARNING: Camera Loosing Power");
+					CameraFX.removeFilter(red);
+					CameraFX.addFilter(blur);
+				}
+				case "grayCamera": {
+					hud.updateHUD("WARNING: Power Supply Extremely Low");
+					CameraFX.removeFilter(red);
+					CameraFX.removeFilter(blur);
+					CameraFX.addFilter(gray);
+				}
 				default: "Invalid event triggered.";
 			}
 		}
