@@ -9,7 +9,7 @@ class Boulder extends FlxSprite
 {
 
     var hitCount = 30;
-    var slamCount = 2;
+    var slamCount = 1;
 
     public function new(?X:Float, ?Y:Float):Void
     {
