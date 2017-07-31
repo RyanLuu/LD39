@@ -34,6 +34,6 @@
     <spawn id="2" x="144" y="176" />
     <hudEvent id="0" x="160" y="0" message="CRITICAL: Thermoelectric generator damaged.&#xD;&#xA;Rapidly losing power." />
     <hudEvent id="1" x="560" y="0" message="CRITICAL: Terminate all research and evacuate immediately." />
-    <hudEvent id="2" x="912" y="0" message="CRITICAL: Falling back to battery power.&#xD;&#xA;" />
+    <hudEvent id="2" x="912" y="0" message="CRITICAL: Falling back to battery power." />
   </entities>
 </level>
