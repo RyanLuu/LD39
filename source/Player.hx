@@ -23,7 +23,6 @@ class Player extends FlxSprite
         setFacingFlip(FlxObject.LEFT, true, false);
         setFacingFlip(FlxObject.RIGHT, false, false);
         drag.x = RUN_SPEED * 8;
-        acceleration.y = GRAVITY;
         maxVelocity.x = RUN_SPEED;
         maxVelocity.y = JUMP_SPEED * 1.5;
         boi = new Boi(this);
@@ -86,16 +85,17 @@ class Player extends FlxSprite
             }
         }
 
-        if(boi.mode != 2 && boi.mode != 3) boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
+        if(boi.mode != 2 && boi.mode != 3 && boi.mode != 5) boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
 
         super.update(elapsed);
         boi.update(elapsed);
         exhaust.update(elapsed);
     }
 
-    public function checkBounds(f: Void -> Void):Void
+    public function checkBounds(level:Level, f: Void -> Void):Void
     {
-        if (y > (FlxG.height*FlxG.camera.zoom+30)) f(); //idk man
+        
+        if (y > level.platforms.height) f();
     }
 
     public function slowDown():Void
