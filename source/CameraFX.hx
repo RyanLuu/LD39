@@ -6,6 +6,7 @@ import flash.filters.BlurFilter;
 import flash.filters.ColorMatrixFilter;
 import flash.filters.BitmapFilter;
 import flixel.FlxG;
+import flixel.util.FlxTimer;
 
 class CameraFX {
 
@@ -22,9 +23,12 @@ class CameraFX {
     private static var filters = [];
     private static var blurry = false;
 
-    public static function fade()
+    public static function transition(?func)
     {
-        FlxG.camera.flash(FlxColor.BLACK, 1);
+        FlxG.camera.fade(FlxColor.BLACK, 1, false, function f() {
+            func();
+            new FlxTimer().start(1, function onTimer(Timer:FlxTimer) FlxG.camera.fade(FlxColor.BLACK, 1, true));
+        });
     }
 
     public static function addFilter(filter:BitmapFilter) {

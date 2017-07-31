@@ -129,14 +129,13 @@ class PlayState extends FlxState
 
 	private function playerTouchedTele(P:Player, T:Teleportation):Void
 	{
-		CameraFX.fade();
 		if (P.alive && P.exists)
 		{
-
-			CameraFX.fade();
-			setLevel(T.to);
-			hud.updateHUD("Teleported!");
-			sendPlayerToSpawn(P,level);
+			CameraFX.transition(function func() {
+				setLevel(T.to);
+				hud.updateHUD("Teleported!");
+				sendPlayerToSpawn(P,level);
+			});
 		}
 	}
 
@@ -159,11 +158,10 @@ class PlayState extends FlxState
 
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
-		CameraFX.fade();
-		sendPlayerToSpawn(player, level);
-
-		resetLevel();
-		hud.updateHUD("You Died!");
+		CameraFX.transition(function f() {
+			resetLevel();
+			sendPlayerToSpawn(player, level);
+		});
 	}
 
 	private function setLevel(new_level:Int)
@@ -174,11 +172,10 @@ class PlayState extends FlxState
 
 	private function playerFellOffMap():Void
 	{
-		CameraFX.fade();
-		sendPlayerToSpawn(player, level);
-
-		resetLevel();
-		hud.updateHUD("You Died!");
+		CameraFX.transition(function f() {
+			resetLevel();
+			sendPlayerToSpawn(player, level);
+		});
 	}
 
 
