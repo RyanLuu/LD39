@@ -80,7 +80,7 @@ class PlayState extends FlxState
 		FlxG.overlap(player.boi, level.boulders, boiDrill);
 		FlxG.overlap(player, level.events, triggerEvent);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
-		player.checkBounds(playerFellOffMap);
+		if(level.current != 7) player.checkBounds(playerFellOffMap);
 		if(player.boi.mode == 3) FlxG.collide(level.platforms, player.boi);
 		//for(i in 0...level.breakables.length)
 		//{
@@ -238,18 +238,37 @@ class PlayState extends FlxState
 					player.boi.mode = 2;
 				}
 				case "irCamera": {
-					hud.updateHUD("WARNING: Disabling color camera functionality to conserve power.");
+					hud.updateHUD("WARNING: Switching to IR camera to conserve power.");
+					CameraFX.removeFilter(CameraFX.blur);
+					CameraFX.removeFilter(CameraFX.gray);
+					CameraFX.addFilter(CameraFX.red);
 					CameraFX.addFilter(CameraFX.red);
 				}
 				case "blurCamera": {
-					hud.updateHUD("CRITICAL: Camera Loosing Power");
-					CameraFX.removeFilter(CameraFX.red);
+					hud.updateHUD("CRITICAL: Camera Loosing Power.");
+					//CameraFX.removeFilter(CameraFX.red);
 					CameraFX.addFilter(CameraFX.blur);
 				}
 				case "grayCamera": {
-					hud.updateHUD("WARNING: Power Supply Extremely Low");
-					CameraFX.clearFilters();
+					hud.updateHUD("WARNING: Power Supply Extremely Low.");
+					CameraFX.removeFilter(CameraFX.red);
+					CameraFX.removeFilter(CameraFX.blur);
 					CameraFX.addFilter(CameraFX.gray);
+				}
+				case "sendTransmission": {
+					hud.updateHUD("Transmission sent.");
+				}
+				case "slowDown": {
+					player.slowDown();
+				}
+				case "endGame": {
+					CameraFX.clearFilters();
+					player.immovable = true;
+					CameraFX.transition(function f() {
+						setLevel(10);
+						sendPlayerToSpawn(player, level);
+					});
+					hud.updateHUD("Transmission received.");
 				}
 				default: "Invalid event triggered.";
 			}

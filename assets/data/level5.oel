@@ -32,9 +32,9 @@
   <entities>
     <spawn id="3" x="-1" y="32" />
     <boulder id="6" x="304" y="272" />
-    <hudEvent id="7" x="256" y="0" message="Scanners indicate that missing is not reccomended" />
+    <hudEvent id="7" x="256" y="0" message="Scanners indicate that missing is not reccomended." />
     <specialEvent id="1" x="0" y="0" eventid="disableDrill" />
-    <hudEvent id="2" x="112" y="108" message="Scanners indicate boulder integrity is weak" />
+    <hudEvent id="2" x="112" y="108" message="Scanners indicate boulder integrity is weak." />
     <boulder id="12" x="1168" y="320" />
     <teleport id="11" x="1264" y="368" to="6" />
     <boulder id="0" x="32" y="416" />

@@ -64,6 +64,8 @@ class Player extends FlxSprite
             if (FlxG.keys.anyJustPressed([UP,W])) SoundPlayer.playJet();
             
             //if (FlxG.keys.anyPressed([UP, W])) exhaust.enable() else exhaust.disable();
+        } else {
+            exhaust.disable();
         }
         if(FlxG.keys.anyJustPressed([UP, W]) && isTouching(FlxObject.FLOOR))
         {
@@ -93,6 +95,11 @@ class Player extends FlxSprite
 
     public function checkBounds(f: Void -> Void):Void
     {
-        if (y > (FlxG.height*FlxG.camera.zoom*3+30)) f(); //idk man
+        if (y > (FlxG.height*FlxG.camera.zoom+30)) f(); //idk man
+    }
+
+    public function slowDown():Void
+    {
+        drag.x += 40;
     }
 }
