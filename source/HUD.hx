@@ -6,7 +6,6 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
-using flixel.util.FlxSpriteUtil;
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
@@ -17,11 +16,13 @@ class HUD extends FlxTypedGroup<FlxSprite>
     private var textMessage:FlxText;
     private var count = 0.0;
     private var text = "";
+    private var lastScl = 0;
 
     public function new()
     {
         super();
         back = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.fromInt(0x7F000000));
+        back.scale.y = 0;
         back.origin.set(0, 0);
         textMessage = new FlxText(0, 2, FlxG.width, "", 8);
         // textMessage.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
@@ -53,7 +54,11 @@ class HUD extends FlxTypedGroup<FlxSprite>
         {
             text = "";
         }
+
         var scl = if (textMessage.text.length > 0) textMessage.text.split("\n").length else 0;
-        FlxTween.tween(back.scale, {y: scl}, 0.5);
+        if (scl != lastScl) {
+            lastScl = scl;
+            FlxTween.tween(back.scale, {y: scl}, 0.2);
+        }
     }
 }
