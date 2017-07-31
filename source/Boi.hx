@@ -33,6 +33,15 @@ class Boi extends FlxSprite {
             desiredPos.y = player.y + 8;
             angle = (angle + 10) % 360;
             loadGraphic(AssetPaths.boi_drill__png);
+        } else if(mode == 3) { //disabled
+            desiredPos.x = 0;
+            desiredPos.y = 0;
+            x = 0;
+            y = 0;
+            visible = false;
+        } else if(mode == 4) { //re-enable mode
+            visible = true;
+            mode = 0;
         }
         var dx = desiredPos.x - x;
         var dy = desiredPos.y - y;
