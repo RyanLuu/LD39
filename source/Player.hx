@@ -74,7 +74,7 @@ class Player extends FlxSprite
             }
         }
 
-        boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
+        if(boi.mode != 3) boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
 
         super.update(elapsed);
         boi.update(elapsed);

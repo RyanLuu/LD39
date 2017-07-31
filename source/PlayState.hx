@@ -212,7 +212,7 @@ class PlayState extends FlxState
 					player.exhaust.disable();
 				}
 				case "disableBoi": {
-					hud.updateHUD("WARNING: Disabling BOI to conserve power.");
+					hud.updateHUD("WARNING: Disabling B.O.I. to conserve power.");
 					player.boi.mode = 3;
 				}
 				default: "Invalid event triggered.";
