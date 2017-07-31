@@ -232,18 +232,19 @@ class PlayState extends FlxState
 				remove(player);
 				remove(level.platforms);
 				SoundPlayer.stopMusic();
+				remove(bg2);
 			});	
 		},10000);
 
-		haxe.Timer.delay(function f2() {
-			CameraFX.transition(function f() {
-				remove(bg0);
-				remove(bg1);
-				remove(bg2);
-			});
-		},15000);
+		//haxe.Timer.delay(function f2() {
+		//	CameraFX.transition(function f() {
+		//		remove(bg0);
+		//		remove(bg1);
+		//		remove(bg2);
+		//	});
+	//	},15000);
 
-		haxe.Timer.delay(function f() {hud.updateHUD("Transmission received.");}, 20000);	
+		haxe.Timer.delay(function f() {hud.updateHUD("Transmission received.");}, 15000);	
 	}
 
 	private function triggerEvent(P:Player, E):Void
