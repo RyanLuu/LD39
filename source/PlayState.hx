@@ -21,6 +21,10 @@ class PlayState extends FlxState
 
 	private var paused:Bool = false;
 
+	private var bg0:FlxBackdrop;
+	private var bg1:FlxBackdrop;
+	private var bg2:FlxBackdrop;
+
 
 	override public function create():Void
 	{
@@ -38,8 +42,12 @@ class PlayState extends FlxState
 		pausedText.scrollFactor.set(0, 0);
 		pausedText.alignment = CENTER;
 
-		add(new FlxBackdrop(AssetPaths.bg__png, 0.25, 0, true, false));
-		add(new FlxBackdrop(AssetPaths.bg1__png, 0.5, 0, true, false));
+		bg0 = new FlxBackdrop(AssetPaths.bg__png, 0.25, 0, true, false);
+		bg1 = new FlxBackdrop(AssetPaths.bg1__png, 0.5, 0, true, false);
+		bg2 = new FlxBackdrop(AssetPaths.bg2__png, 0.5, 0, true, false);
+
+		add(bg0);
+		add(bg1);
 		add(level.platforms);
 		add(level.boulders);
 		add(player);
@@ -72,7 +80,11 @@ class PlayState extends FlxState
 		FlxG.overlap(player.boi, level.boulders, boiDrill);
 		FlxG.overlap(player, level.events, triggerEvent);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
+<<<<<<< HEAD
 		player.checkBounds(level, playerFellOffMap);
+=======
+		if(level.current != 7) player.checkBounds(playerFellOffMap);
+>>>>>>> origin/master
 		if(player.boi.mode == 3) FlxG.collide(level.platforms, player.boi);
 		//for(i in 0...level.breakables.length)
 		//{
@@ -188,6 +200,10 @@ class PlayState extends FlxState
 		add(level.platforms);
 		add(level.boulders);
 		add(level.hazards);
+
+		if(level.current == 7){
+			changeBackdrop();
+		}
 	}
 
 	private function sendPlayerToSpawn(player:Player, level:Level)
@@ -199,18 +215,32 @@ class PlayState extends FlxState
 		player.boi.setPos(player.x, player.y);
 	}
 
+	private function changeBackdrop()
+	{
+		remove(bg0);
+		remove(bg1);
+		add(bg2);
+	}
+
 	private function triggerEvent(P:Player, E):Void
 	{
 		if (Std.is(E, HUDEvent)) {
 			E.trigger(hud);
 		} else if (Std.is(E, SpecialEvent)) {
+<<<<<<< HEAD
 			if (!E.flagged()) {
 				switch E.eventid {
 					case "disableJetpack": {
+=======
+			switch E.eventid {
+				case "disableJetpack": {
+					if(!E.flag){
+>>>>>>> origin/master
 						hud.updateHUD("CRITICAL: Disabling enhanced propulsion to conserve power.");
 						player.jetpack = false;
 						player.exhaust.disable();
 					}
+<<<<<<< HEAD
 					case "disableBoi": {
 						hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
 						player.boi.mode = 3;
@@ -236,7 +266,70 @@ class PlayState extends FlxState
 					default: "Invalid event triggered.";
 				}
 				E.raiseFlag();
+=======
+				}
+				case "disableBoi": {
+					if(!E.flag){
+						hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
+						player.boi.mode = 3;
+					}
+				}
+				case "disableDrill": {
+					if(!E.flag){
+						hud.updateHUD("WARNING: Disabling drill functionality to conserve power.");
+						player.boi.mode = 2;
+					}
+				}
+				case "irCamera": {
+					if(!E.flag){
+						hud.updateHUD("WARNING: Switching to IR camera to conserve power.");
+						//CameraFX.removeFilter(CameraFX.blur);
+						//CameraFX.removeFilter(CameraFX.gray);
+						CameraFX.addFilter(CameraFX.red);
+					}
+				}
+				case "disappearBoi": {
+					if(!E.flag) player.boi.mode = 5;
+					player.boi.visible = false;
+					player.boi.immovable = true;
+					//trace("rip");
+				}
+				case "blurCamera": {
+					if(!E.flag){
+						hud.updateHUD("CRITICAL: Camera Loosing Power.");
+						//CameraFX.removeFilter(CameraFX.red);
+						CameraFX.addFilter(CameraFX.blur);
+					}
+				}
+				case "grayCamera": {
+					if(!E.flag){
+						hud.updateHUD("WARNING: Power Supply Extremely Low.");
+						CameraFX.removeFilter(CameraFX.red);
+						CameraFX.removeFilter(CameraFX.blur);
+						CameraFX.addFilter(CameraFX.gray);
+					}
+				}
+				case "sendTransmission": {
+					if(!E.flag) hud.updateHUD("Transmission sent.");
+				}
+				case "slowDown": {
+					if(!E.flag) player.slowDown();
+				}
+				case "endGame": {
+					if(!E.flag){ 
+						CameraFX.clearFilters();
+						player.immovable = true;
+						CameraFX.transition(function f() {
+							setLevel(10);
+							sendPlayerToSpawn(player, level);
+						});
+						hud.updateHUD("Transmission received.");
+					}
+				}
+				default: "Invalid event triggered.";
+>>>>>>> origin/master
 			}
+			E.flag = true;
 		}
 	}
 }

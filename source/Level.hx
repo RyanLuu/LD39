@@ -20,12 +20,16 @@ class Level
     public var boulders:FlxGroup;
     public var events:FlxGroup;
 
+<<<<<<< HEAD
     public function new(map:Int=4)
+=======
+    public function new(map:Int=6)
+>>>>>>> origin/master
 	{
         this.current = map;
         spawn = new FlxPoint();
         load();
-        platforms.follow();
+        //platforms.follow();
     }
 
     public function load():Void
@@ -37,6 +41,7 @@ class Level
         loader = new FlxOgmoLoader(getMapPath(current));
         platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "tiles");
         loader.loadEntities(placeEntities, "entities");
+        platforms.follow();
     }
 
     private function placeEntities(entityName:String, entityData:Xml):Void
@@ -81,7 +86,7 @@ class Level
     private function getMapPath(i:Int):String
     {
         //if (i == 3) i == 4;
-        if (i == 10) FlxG.switchState(new MenuState());
+        //if (i == 10) FlxG.switchState(new MenuState());
         return "assets/data/level" + i + ".oel";
         //return "assets/data/boulderTest.oel";
         //return "assets/data/jumpTest.oel";

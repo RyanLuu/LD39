@@ -53,10 +53,18 @@ class Player extends FlxSprite
 
         if (jetpack)
         {
-            acceleration.y = if (FlxG.keys.anyPressed([UP, W])) -JUMP_SPEED * 0.5 else GRAVITY;
-            if (FlxG.keys.anyPressed([UP, W])) exhaust.enable() else exhaust.disable();
+            if (FlxG.keys.anyPressed([UP, W])) {
+                acceleration.y = -JUMP_SPEED *0.5;
+                exhaust.enable();
+            } else {
+                acceleration.y = GRAVITY;
+                exhaust.disable();
+            }
+            if (FlxG.keys.anyJustPressed([UP,W])) SoundPlayer.playJet();
+            
+            //if (FlxG.keys.anyPressed([UP, W])) exhaust.enable() else exhaust.disable();
         } else {
-            acceleration.y = GRAVITY;
+            exhaust.disable();
         }
         if(FlxG.keys.anyJustPressed([UP, W]) && isTouching(FlxObject.FLOOR))
         {
@@ -77,7 +85,7 @@ class Player extends FlxSprite
             }
         }
 
-        if(boi.mode != 2 && boi.mode != 3) boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
+        if(boi.mode != 2 && boi.mode != 3 && boi.mode != 5) boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
 
         super.update(elapsed);
         boi.update(elapsed);
@@ -86,7 +94,16 @@ class Player extends FlxSprite
 
     public function checkBounds(level:Level, f: Void -> Void):Void
     {
+<<<<<<< HEAD
         
         if (y > level.platforms.height) f(); //idk man
+=======
+        if (y > (FlxG.height*FlxG.camera.zoom+30)) f(); //idk man
+    }
+
+    public function slowDown():Void
+    {
+        drag.x += 40;
+>>>>>>> origin/master
     }
 }
