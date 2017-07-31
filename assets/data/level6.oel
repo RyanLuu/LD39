@@ -39,5 +39,6 @@
     <hudEvent id="6" x="272" y="0" message="800 Meters from target transmission zone." />
     <hudEvent id="7" x="480" y="0" message="WARNING: Interface failure imminent." />
     <specialEvent id="8" x="1040" y="0" eventid="disableBoi" />
+    <specialEvent id="5" x="1264" y="0" eventid="disappearBoi" />
   </entities>
 </level>

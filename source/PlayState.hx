@@ -218,6 +218,34 @@ class PlayState extends FlxState
 		add(bg2);
 	}
 
+	private function endGame():Void
+	{
+		changeBackdrop();
+		CameraFX.clearFilters();
+
+		haxe.Timer.delay(function f() {
+			hud.updateHUD("Transmission sent.");
+		},5000);
+
+		haxe.Timer.delay(function f1() {
+			CameraFX.transition(function f() {
+				remove(player);
+				remove(level.platforms);
+				SoundPlayer.stopMusic();
+			});	
+		},10000);
+
+		haxe.Timer.delay(function f2() {
+			CameraFX.transition(function f() {
+				remove(bg0);
+				remove(bg1);
+				remove(bg2);
+			});
+		},15000);
+
+		haxe.Timer.delay(function f() {hud.updateHUD("Transmission received.");}, 20000);	
+	}
+
 	private function triggerEvent(P:Player, E):Void
 	{
 		if (Std.is(E, HUDEvent)) {
@@ -255,7 +283,7 @@ class PlayState extends FlxState
 					if(!E.flag) player.boi.mode = 5;
 					player.boi.visible = false;
 					player.boi.immovable = true;
-					//trace("rip");
+					trace("rip");
 				}
 				case "blurCamera": {
 					if(!E.flag){
@@ -272,22 +300,8 @@ class PlayState extends FlxState
 						CameraFX.addFilter(CameraFX.gray);
 					}
 				}
-				case "sendTransmission": {
-					if(!E.flag) hud.updateHUD("Transmission sent.");
-				}
-				case "slowDown": {
-					if(!E.flag) player.slowDown();
-				}
 				case "endGame": {
-					if(!E.flag){ 
-						CameraFX.clearFilters();
-						player.immovable = true;
-						CameraFX.transition(function f() {
-							setLevel(10);
-							sendPlayerToSpawn(player, level);
-						});
-						hud.updateHUD("Transmission received.");
-					}
+					if(!E.flag) endGame();
 				}
 				default: "Invalid event triggered.";
 			}
