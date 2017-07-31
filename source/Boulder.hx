@@ -10,6 +10,7 @@ class Boulder extends FlxSprite
 
     var hitCount = 30;
     var slamCount = 1;
+    var smashed = false;
 
     public function new(?X:Float, ?Y:Float):Void
     {
@@ -27,13 +28,14 @@ class Boulder extends FlxSprite
 
     public function smash()
     {
-        if(slamCount  == 0) {
+        if(!smashed) {
             hitCount = 0;
             this.color = FlxColor.BROWN;
             drag.x = 300;
             acceleration.y = 420;
             immovable = false;
             SoundPlayer.playSmash();
+            smashed = true;
         }
     }
 
