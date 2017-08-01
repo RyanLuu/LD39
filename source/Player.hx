@@ -76,14 +76,14 @@ class Player extends FlxSprite
             }
         }
     
-        if (FlxG.keys.justPressed.CONTROL)
-        {
-            jetpack = !jetpack;
-            if (!jetpack)
-            {
-                acceleration.y = GRAVITY;
-            }
-        }
+       // if (FlxG.keys.justPressed.CONTROL)
+        //{
+          //  jetpack = !jetpack;
+            //if (!jetpack)
+            //{
+              //  acceleration.y = GRAVITY;
+            //}
+        //}
 
         if(boi.mode != 2 && boi.mode != 3 && boi.mode != 5) boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
 

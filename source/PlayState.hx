@@ -290,7 +290,7 @@ class PlayState extends FlxState
 				}
 				case "blurCamera": {
 					if(!E.flag){
-						hud.updateHUD("CRITICAL: Camera Loosing Power.");
+						hud.updateHUD("CRITICAL: Camera Losing Power.");
 						//CameraFX.removeFilter(CameraFX.red);
 						CameraFX.addFilter(CameraFX.blur);
 					}
