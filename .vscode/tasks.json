@@ -6,129 +6,217 @@
 		{
 			"taskName": "flash release",
 			"suppressTaskName": true,
-			"args": ["test", "flash"],
+			"args": [
+				"test",
+				"flash"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "flash debug",
 			"suppressTaskName": true,
-			"args": ["test", "flash", "-debug", "-Dfdb"],
+			"args": [
+				"test",
+				"flash",
+				"-debug",
+				"-Dfdb"
+			],
 			"problemMatcher": "$haxe",
 			"isBuildCommand": true
 		},
 		{
 			"taskName": "flash debug (build only)",
 			"suppressTaskName": true,
-			"args": ["build", "flash", "-debug", "-Dfdb"],
+			"args": [
+				"build",
+				"flash",
+				"-debug",
+				"-Dfdb"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "html5 release",
 			"suppressTaskName": true,
-			"args": ["test", "html5"],
+			"args": [
+				"test",
+				"html5"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "html5 debug",
 			"suppressTaskName": true,
-			"args": ["test", "html5", "-debug"],
-			//"isBuildCommand": true,
-			"problemMatcher": "$haxe"
+			"args": [
+				"test",
+				"html5",
+				"-debug"
+			],
+			"isBuildCommand": true,
+			"problemMatcher": "$haxe",
+			"group": {
+				"kind": "build",
+				//"isDefault": true
+			}
 		},
 		{
 			"taskName": "neko release",
 			"suppressTaskName": true,
-			"args": ["test", "neko"],
+			"args": [
+				"test",
+				"neko"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "neko debug",
 			"suppressTaskName": true,
-			"args": ["test", "neko", "-debug"],
+			"args": [
+				"test",
+				"neko",
+				"-debug"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "neko release -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "neko", "-Dnext"],
+			"args": [
+				"test",
+				"neko",
+				"-Dnext"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "neko debug -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "neko", "-debug", "-Dnext"],
+			"args": [
+				"test",
+				"neko",
+				"-debug",
+				"-Dnext"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "cpp release",
 			"suppressTaskName": true,
-			"args": ["test", "cpp"],
+			"args": [
+				"test",
+				"cpp"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "cpp debug",
 			"suppressTaskName": true,
-			"args": ["test", "cpp", "-debug"],
+			"args": [
+				"test",
+				"cpp",
+				"-debug"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "cpp release -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "cpp", "-Dnext"],
+			"args": [
+				"test",
+				"cpp",
+				"-Dnext"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "cpp debug -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "cpp", "-Dnext", "-debug"],
+			"args": [
+				"test",
+				"cpp",
+				"-Dnext",
+				"-debug"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "android debug",
 			"suppressTaskName": true,
-			"args": ["test", "android", "-debug"],
+			"args": [
+				"test",
+				"android",
+				"-debug"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "android release",
 			"suppressTaskName": true,
-			"args": ["test", "android"],
+			"args": [
+				"test",
+				"android"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "android debug -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "android", "-debug", "-Dnext"],
+			"args": [
+				"test",
+				"android",
+				"-debug",
+				"-Dnext"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "android release -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "android", "-Dnext"],
+			"args": [
+				"test",
+				"android",
+				"-Dnext"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "ios debug",
 			"suppressTaskName": true,
-			"args": ["test", "ios", "-debug"],
+			"args": [
+				"test",
+				"ios",
+				"-debug"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "ios release",
 			"suppressTaskName": true,
-			"args": ["test", "ios"],
+			"args": [
+				"test",
+				"ios"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "ios debug -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "ios", "-debug", "-Dnext"],
+			"args": [
+				"test",
+				"ios",
+				"-debug",
+				"-Dnext"
+			],
 			"problemMatcher": "$haxe"
 		},
 		{
 			"taskName": "ios release -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "ios", "-Dnext"],
+			"args": [
+				"test",
+				"ios",
+				"-Dnext"
+			],
 			"problemMatcher": "$haxe"
 		}
 	]
