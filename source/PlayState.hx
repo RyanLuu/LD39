@@ -80,7 +80,7 @@ class PlayState extends FlxState
 		FlxG.overlap(player.boi, level.boulders, boiDrill);
 		FlxG.overlap(player, level.events, triggerEvent);
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
-		player.checkBounds(level, playerFellOffMap);
+		if(level.current != 10) player.checkBounds(level, playerFellOffMap);
 		if(player.boi.mode == 3) FlxG.collide(level.platforms, player.boi);
 		//for(i in 0...level.breakables.length)
 		//{
@@ -220,23 +220,23 @@ class PlayState extends FlxState
 
 	private function endGame():Void
 	{
-		changeBackdrop();
+		//changeBackdrop();
 		CameraFX.removeFilter(CameraFX.blur);
-
-		haxe.Timer.delay(function f() {
-			hud.updateHUD("Transmission sent.");
-		},10000);
 
 		haxe.Timer.delay(function f1() {
 			CameraFX.transition(function f() {
 				CameraFX.clearFilters();
-				hud.updateHUD("Camera disabled, shutting down...");
 				remove(player);
 				remove(level.platforms);
-				SoundPlayer.stopMusic();
 				remove(bg2);
+				SoundPlayer.stopMusic();
 			});	
+			hud.updateHUD("Camera disabled, shutting down...");
 		},5000);
+
+		haxe.Timer.delay(function f() {
+			hud.updateHUD("Transmission sent.");
+		},13000);
 
 		//haxe.Timer.delay(function f2() {
 		//	CameraFX.transition(function f() {
@@ -246,7 +246,7 @@ class PlayState extends FlxState
 		//	});
 	//	},15000);
 
-		haxe.Timer.delay(function f() {hud.updateHUD("Transmission received.");}, 15000);	
+		haxe.Timer.delay(function f() {hud.updateHUD("Transmission received.");}, 20000);	
 	}
 
 	private function triggerEvent(P:Player, E):Void
