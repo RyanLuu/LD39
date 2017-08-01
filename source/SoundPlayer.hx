@@ -1,11 +1,11 @@
 package;
 
 
-import openfl.media.Sound;
-import openfl.net.URLRequest;
-import openfl.events.Event;
-import openfl.media.SoundTransform;
-import openfl.media.SoundChannel;
+import flash.media.Sound;
+import flash.net.URLRequest;
+import flash.events.Event;
+import flash.media.SoundTransform;
+import flash.media.SoundChannel;
 
 
 class SoundPlayer
