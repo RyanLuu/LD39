@@ -221,20 +221,22 @@ class PlayState extends FlxState
 	private function endGame():Void
 	{
 		changeBackdrop();
-		CameraFX.clearFilters();
+		CameraFX.removeFilter(CameraFX.blur);
 
 		haxe.Timer.delay(function f() {
 			hud.updateHUD("Transmission sent.");
-		},5000);
+		},10000);
 
 		haxe.Timer.delay(function f1() {
 			CameraFX.transition(function f() {
+				CameraFX.clearFilters();
+				hud.updateHUD("Camera disabled, shutting down...");
 				remove(player);
 				remove(level.platforms);
 				SoundPlayer.stopMusic();
 				remove(bg2);
 			});	
-		},10000);
+		},5000);
 
 		//haxe.Timer.delay(function f2() {
 		//	CameraFX.transition(function f() {

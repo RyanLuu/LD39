@@ -20,7 +20,7 @@ class Level
     public var boulders:FlxGroup;
     public var events:FlxGroup;
 
-    public function new(map:Int=8)
+    public function new(map:Int=4)
 	{
         this.current = map;
         spawn = new FlxPoint();
