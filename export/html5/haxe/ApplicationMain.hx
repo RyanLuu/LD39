@@ -38,7 +38,7 @@ import haxe.macro.Expr;
 		
 		var config = {
 			
-			build: "262",
+			build: "264",
 			company: "HaxeFlixel",
 			file: "Game",
 			fps: 60,
@@ -110,7 +110,7 @@ import haxe.macro.Expr;
 		#if (lime >= "7.0.0")
 		ManifestResources.init (config);
 		
-		app.meta["build"] = "262";
+		app.meta["build"] = "264";
 		app.meta["company"] = "HaxeFlixel";
 		app.meta["file"] = "Game";
 		app.meta["name"] = "Game";
