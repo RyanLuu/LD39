@@ -15,7 +15,6 @@ class PlayState extends FlxState
 	private var hud:HUD;
 	private var fx:FX;
 	private var pausedText:FlxText;
-	private var prompter:Prompter;
 
 	private var level:Level;
 
@@ -36,7 +35,6 @@ class PlayState extends FlxState
 		player = new Player();
 		level = new Level();
 		hud = new HUD();
-		//prompter = new Prompter(player,hud);
 		pausedText = new FlxText(0, FlxG.height / 2, FlxG.width);
 		pausedText.text = "Game Paused";
 		pausedText.scrollFactor.set(0, 0);
@@ -54,7 +52,7 @@ class PlayState extends FlxState
 		add(player.boi);
 		add(player.exhaust);
 		add(hud);
-		sendPlayerToSpawn(player, level);
+		respawnPlayer(player, level);
 
 		setupCamera(player);
 
@@ -82,22 +80,6 @@ class PlayState extends FlxState
 		player.y = Math.round(player.y); // eliminate jittering caused by floating point inaccuracy
 		if(level.current != 10) player.checkBounds(level, playerFellOffMap);
 		if(player.boi.mode == 3) FlxG.collide(level.platforms, player.boi);
-		//for(i in 0...level.breakables.length)
-		//{
-			//for(j in 0...level.breakables.length)
-			//{
-				//if(FlxG.pixelPerfectOverlap(cast (level.breakables.members[i], FlxSprite), cast (level.breakables.members[j]),200))
-				//{
-					//FlxG.collide(level.breakables.members[i], level.breakables.members[j]);
-				//}
-				//trace(i);
-				//if(FlxCollision.pixelPerfectCheck(cast (level.breakables.members[i], FlxSprite), cast (level.breakables.members[j]),1))
-				//{
-					//FlxG.collide(level.breakables.members[i], level.breakables.members[j]);
-				//}
-			//}
-		//}
-
 
 		if(FlxG.keys.justPressed.ESCAPE)
 		{
@@ -115,19 +97,15 @@ class PlayState extends FlxState
 			}
 		}
 
-		
-
 		if (FlxG.keys.justPressed.R) {
-			resetLevel();
-			sendPlayerToSpawn(player, level);
+			loadCurrentLevel();
+			respawnPlayer(player, level);
 		}
 
 		if (FlxG.keys.justPressed.F12)
 		{
 			FlxG.debugger.visible = !FlxG.debugger.visible;
 		}
-
-		//prompter.update(level.current);
 	}
 
 	private function setupCamera(player:Player):Void
@@ -142,7 +120,7 @@ class PlayState extends FlxState
 		{
 			CameraFX.transition(function func() {
 				setLevel(T.to);
-				sendPlayerToSpawn(P,level);
+				respawnPlayer(P,level);
 			});
 		}
 	}
@@ -163,31 +141,30 @@ class PlayState extends FlxState
 		}
 	}
 
-
 	private function playerHitHazard(player:Player, hazard:Hazard):Void
 	{
 		CameraFX.transition(function f() {
-			resetLevel();
-			sendPlayerToSpawn(player, level);
+			loadCurrentLevel();
+			respawnPlayer(player, level);
 		});
 	}
 
 	private function setLevel(new_level:Int)
 	{
 		this.level.current = new_level;
-		resetLevel();
+		loadCurrentLevel();
 	}
 
 	private function playerFellOffMap():Void
 	{
 		CameraFX.transition(function f() {
-			resetLevel();
-			sendPlayerToSpawn(player, level);
+			loadCurrentLevel();
+			respawnPlayer(player, level);
 		});
 	}
 
 
-	private function resetLevel():Void
+	private function loadCurrentLevel():Void
 	{
 		remove(level.platforms);
 		remove(level.boulders);
@@ -200,15 +177,18 @@ class PlayState extends FlxState
 		if(level.current == 7){
 			changeBackdrop();
 		}
+		hud.clearText();
 	}
 
-	private function sendPlayerToSpawn(player:Player, level:Level)
+	private function respawnPlayer(player:Player, level:Level)
 	{
 		player.x = level.spawn.x;
 		player.y = level.spawn.y;
 		player.velocity.x = 0;
 		player.velocity.y = 0;
 		player.boi.setPos(player.x, player.y);
+		player.facing = FlxObject.RIGHT;
+		player.jetpack = level.jetpackEnabled;
 	}
 
 	private function changeBackdrop()
@@ -220,8 +200,9 @@ class PlayState extends FlxState
 
 	private function endGame():Void
 	{
-		//changeBackdrop();
-		CameraFX.removeFilter(CameraFX.blur);
+		haxe.Timer.delay(function f0() {
+			hud.updateHUD("Disabling camera...");
+		}, 4000);
 
 		haxe.Timer.delay(function f1() {
 			CameraFX.transition(function f() {
@@ -230,81 +211,57 @@ class PlayState extends FlxState
 				remove(level.platforms);
 				remove(bg2);
 				SoundPlayer.stopMusic();
-			});	
-			hud.updateHUD("Camera disabled, shutting down...");
+			});
 		},5000);
 
-		haxe.Timer.delay(function f() {
-			hud.updateHUD("Transmission sent.");
-		},13000);
+		haxe.Timer.delay(function f2() {
+			hud.updateHUD("Transmission sent...");
+		},12000);
 
-		//haxe.Timer.delay(function f2() {
-		//	CameraFX.transition(function f() {
-		//		remove(bg0);
-		//		remove(bg1);
-		//		remove(bg2);
-		//	});
-	//	},15000);
-
-		haxe.Timer.delay(function f() {hud.updateHUD("Transmission received.");}, 20000);	
+		haxe.Timer.delay(function f3() {hud.updateHUD("Transmission received.");}, 17000);	
 	}
 
 	private function triggerEvent(P:Player, E):Void
 	{
 		if (Std.is(E, HUDEvent)) {
 			E.trigger(hud);
-		} else if (Std.is(E, SpecialEvent)) {
+		} else if (Std.is(E, SpecialEvent) && !E.flag) {
 			switch E.eventid {
 				case "disableJetpack": {
-					if(!E.flag){
-						hud.updateHUD("CRITICAL: Disabling enhanced propulsion to conserve power.");
-						player.jetpack = false;
-						player.exhaust.disable();
-					}
+					hud.updateHUD("CRITICAL: Disabling enhanced propulsion to conserve power.");
+					player.jetpack = false;
+					player.exhaust.disable();
 				}
 				case "disableBoi": {
-					if(!E.flag){
-						hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
-						player.boi.mode = 3;
-					}
+					hud.updateHUD("CRITICAL: Disabling B.O.I. to conserve power.");
+					player.boi.mode = 3;
 				}
 				case "disableDrill": {
-					if(!E.flag){
-						hud.updateHUD("WARNING: Disabling drill functionality to conserve power.");
-						player.boi.mode = 2;
-					}
+					hud.updateHUD("WARNING: Disabling drill functionality to conserve power.");
+					player.boi.mode = 2;
 				}
 				case "irCamera": {
-					if(!E.flag){
-						hud.updateHUD("WARNING: Switching to IR camera to conserve power.");
-						//CameraFX.removeFilter(CameraFX.blur);
-						//CameraFX.removeFilter(CameraFX.gray);
-						CameraFX.addFilter(CameraFX.red);
-					}
+					CameraFX.clearFilters();
+					hud.updateHUD("WARNING: Switching to IR camera to conserve power.");
+					CameraFX.addFilter(CameraFX.red);
 				}
 				case "disappearBoi": {
-					if(!E.flag) player.boi.mode = 5;
-					player.boi.visible = false;
-					player.boi.immovable = true;
-					trace("rip");
+					player.boi.mode = 5;
 				}
 				case "blurCamera": {
-					if(!E.flag){
-						hud.updateHUD("CRITICAL: Camera Losing Power.");
-						//CameraFX.removeFilter(CameraFX.red);
-						CameraFX.addFilter(CameraFX.blur);
-					}
+					hud.updateHUD("CRITICAL: Camera Losing Power.");
+					CameraFX.clearFilters();
+					CameraFX.addFilter(CameraFX.blur);
+					CameraFX.addFilter(CameraFX.red);
 				}
 				case "grayCamera": {
-					if(!E.flag){
-						hud.updateHUD("WARNING: Power Supply Extremely Low.");
-						CameraFX.removeFilter(CameraFX.red);
-						//CameraFX.removeFilter(CameraFX.blur);
-						CameraFX.addFilter(CameraFX.gray);
-					}
+					hud.updateHUD("WARNING: Power Supply Extremely Low.");
+					CameraFX.clearFilters();
+					CameraFX.addFilter(CameraFX.blur);
+					CameraFX.addFilter(CameraFX.gray);
 				}
 				case "endGame": {
-					if(!E.flag) endGame();
+					endGame();
 				}
 				default: "Invalid event triggered.";
 			}

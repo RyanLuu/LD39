@@ -34,23 +34,24 @@ class Boi extends FlxSprite {
             angle = (angle + 10) % 360;
             loadGraphic(AssetPaths.boi_drill__png);
         } else if (mode == 2) { //no drill
-            desiredPos.x = if (player.facing == FlxObject.RIGHT) player.x - 16 else player.x + player.width + 16;
+            desiredPos.x = if (player.facing == FlxObject.RIGHT) player.x - 20 else player.x + player.width + 20;
             desiredPos.y = player.y;
             desiredPos.y += Math.sin(ctr) * 4;
             loadGraphic(AssetPaths.boi__png);
         } else if (mode == 3) { //disabled
+            if (angle < 110) angle += 1;
+            if (!isTouching(FlxObject.FLOOR)) y++; 
             desiredPos.x = x;
             desiredPos.y = y;
-            if(angle < 110) angle += 1;
             //visible = false;
         } else if (mode == 4) { //re-enable mode
             visible = true;
             mode = 0;
         } else if (mode == 5){
             visible = false;
+            immovable = true;
             desiredPos.x = x;
             desiredPos.y = y;
-            immovable = true;
         }
         var dx = desiredPos.x - x;
         var dy = desiredPos.y - y;

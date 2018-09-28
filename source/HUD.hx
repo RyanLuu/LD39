@@ -25,7 +25,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
         back.scale.y = 0;
         back.origin.set(0, 0);
         textMessage = new FlxText(0, 2, FlxG.width, "", 8);
-        // textMessage.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
+
         add(back);
         add(textMessage);
         forEach(function(spr:FlxSprite) spr.scrollFactor.set(0, 0));
@@ -46,6 +46,12 @@ class HUD extends FlxTypedGroup<FlxSprite>
         }
     }
 
+    public function clearText():Void
+    {
+        textMessage.text = "";
+        text = "";
+    }
+
     override public function update(elapsed:Float):Void
     {
         if (text.length > 0) {
@@ -54,10 +60,10 @@ class HUD extends FlxTypedGroup<FlxSprite>
         textMessage.text = text.substring(0, Std.int(count));
         if (count > text.length + CLEAR_AFTER)
         {
-            text = "";
+            text = " ";
         }
 
-        var scl = if (textMessage.text.length > 0) textMessage.text.split("\n").length else 0;
+        var scl = if (textMessage.text.length > 1) textMessage.text.split("\n").length else 0;
         if (scl != lastScl) {
             lastScl = scl;
             FlxTween.tween(back.scale, {y: scl}, 0.2);

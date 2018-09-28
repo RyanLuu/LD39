@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OgmoVersion>2.1.0.6</OgmoVersion>
-  <Name>New Project</Name>
+  <Name>LD39-Post</Name>
   <BackgroundColor A="255" R="125" G="160" B="255" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
@@ -16,7 +16,7 @@
     <Width>2560</Width>
     <Height>2600</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Will\Documents\GitHub\LD39\assets\data\project.oep</Filename>
+  <Filename>C:\Users\Ryan\Documents\GitHub\LD39-Post\assets\data\project.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -24,7 +24,9 @@
     <Height>480</Height>
   </CameraSize>
   <ExportCameraPosition>false</ExportCameraPosition>
-  <LevelValueDefinitions />
+  <LevelValueDefinitions>
+    <ValueDefinition xsi:type="BoolValueDefinition" Name="jetpackEnabled" Default="false" />
+  </LevelValueDefinitions>
   <LayerDefinitions>
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>tiles</Name>
@@ -141,10 +143,10 @@
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
-    <EntityDefinition Name="specialEvent" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+    <EntityDefinition Name="specialEvent" Limit="-1" ResizableX="true" ResizableY="true" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>16</Width>
-        <Height>480</Height>
+        <Height>16</Height>
       </Size>
       <Origin>
         <X>0</X>

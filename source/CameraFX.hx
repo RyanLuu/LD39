@@ -27,7 +27,7 @@ class CameraFX {
     {
         FlxG.camera.fade(FlxColor.BLACK, 1, false, function f() {
             func();
-            new FlxTimer().start(1, function onTimer(Timer:FlxTimer) FlxG.camera.fade(FlxColor.BLACK, 1, true));
+            new FlxTimer().start(1, function onTimer(Timer:FlxTimer) FlxG.camera.fade(FlxColor.BLACK, 0.5, true));
         });
     }
 

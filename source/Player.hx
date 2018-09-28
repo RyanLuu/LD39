@@ -12,9 +12,12 @@ class Player extends FlxSprite
     public var boi:Boi;
     public var exhaust:Exhaust;
 
+    public var jumping = false;
+
     public static inline var RUN_SPEED = 80;
     public static inline var GRAVITY = 420;
     public static inline var JUMP_SPEED = 210;
+    public static inline var TERMINAL_VELOCITY = 310;
 
     public function new(?X:Float=0, ?Y:Float=0)
     {
@@ -24,7 +27,7 @@ class Player extends FlxSprite
         setFacingFlip(FlxObject.RIGHT, false, false);
         drag.x = RUN_SPEED * 8;
         maxVelocity.x = RUN_SPEED;
-        maxVelocity.y = JUMP_SPEED * 1.5;
+        maxVelocity.y = TERMINAL_VELOCITY;
         boi = new Boi(this);
         exhaust = new Exhaust(this);
         animation.add("idle", [0,1,2,1], 6);
@@ -54,7 +57,7 @@ class Player extends FlxSprite
         if (jetpack)
         {
             if (FlxG.keys.anyPressed([UP, W])) {
-                acceleration.y = -JUMP_SPEED *0.5;
+                acceleration.y = -JUMP_SPEED * 0.5;
                 exhaust.enable();
             } else {
                 acceleration.y = GRAVITY;
@@ -62,8 +65,8 @@ class Player extends FlxSprite
             }
             if (FlxG.keys.anyJustPressed([UP,W])) SoundPlayer.playJet();
             
-            //if (FlxG.keys.anyPressed([UP, W])) exhaust.enable() else exhaust.disable();
         } else {
+            acceleration.y = GRAVITY;
             exhaust.disable();
         }
         if(FlxG.keys.anyJustPressed([UP, W]) && isTouching(FlxObject.FLOOR))
@@ -73,17 +76,17 @@ class Player extends FlxSprite
                 velocity.y *= 0.5;
             } else {
                 SoundPlayer.playJump();
+                jumping = true;
             }
         }
-    
-       // if (FlxG.keys.justPressed.CONTROL)
-        //{
-          //  jetpack = !jetpack;
-            //if (!jetpack)
-            //{
-              //  acceleration.y = GRAVITY;
-            //}
-        //}
+
+        if (jumping)
+        {
+            jumping = velocity.y < 0;
+            if (!FlxG.keys.anyPressed([UP, W])) {
+                acceleration.y = GRAVITY * 1.5;
+            }
+        }
 
         if(boi.mode != 2 && boi.mode != 3 && boi.mode != 5) boi.mode = if (FlxG.keys.pressed.SPACE) 1 else 0;
 

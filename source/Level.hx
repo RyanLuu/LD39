@@ -19,24 +19,25 @@ class Level
     public var hazards:FlxGroup;
     public var boulders:FlxGroup;
     public var events:FlxGroup;
+    public var jetpackEnabled:Bool;
 
     public function new(map:Int=0)
 	{
         this.current = map;
         spawn = new FlxPoint();
         load();
-        //platforms.follow();
     }
 
     public function load():Void
     {
-        grpTeleporter = new FlxGroup();
-        hazards = new FlxGroup();
-        boulders = new FlxGroup();
-        events = new FlxGroup();
         loader = new FlxOgmoLoader(getMapPath(current));
-        platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "tiles");
+        this.grpTeleporter = new FlxGroup();
+        this.hazards = new FlxGroup();
+        this.boulders = new FlxGroup();
+        this.events = new FlxGroup();
+        this.platforms = loader.loadTilemap(AssetPaths.tiles__png, 16, 16, "tiles");
         loader.loadEntities(placeEntities, "entities");
+        this.jetpackEnabled = loader.getProperty("jetpackEnabled") == "True";
         platforms.follow();
     }
 
@@ -75,16 +76,15 @@ class Level
         if (entityName == "specialEvent")
         {
             var id:String = entityData.get("eventid");
-            events.add(new SpecialEvent(x, y, id));
+            var width:Int = Std.parseInt(entityData.get("width"));
+            var height:Int = Std.parseInt(entityData.get("height"));
+            events.add(new SpecialEvent(x, y, width, height, id));
+            
         }
 	}
 
     private function getMapPath(i:Int):String
     {
-        //if (i == 3) i == 4;
-        //if (i == 10) FlxG.switchState(new MenuState());
         return "assets/data/level" + i + ".oel";
-        //return "assets/data/boulderTest.oel";
-        //return "assets/data/jumpTest.oel";
     }
 }
